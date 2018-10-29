@@ -32,6 +32,7 @@ public class DbDropDownView: UITableView
     public var hideOptionsWhenSelect = true // Hide when choose
     public var hideOptionsWhenTouchOut = false // Hide when touch out
     public var animationType: DbDropDownViewAnimationType = .Default
+    public var displayDirection: DbDropDownViewDirection = .TopToBottom
     
     /// Set an array of SearchTextFieldItem's to be used for suggestions
     public func dataSourceItems(_ items: [DbDropDownViewItem]) {
@@ -99,7 +100,6 @@ public class DbDropDownView: UITableView
         
         // -- Touch background --
         self.bgTouchView = UIView(frame: UIScreen.main.bounds)
-        self.bgTouchView.backgroundColor = UIColor.clear //UIColor.yellow.withAlphaComponent(0.4)
         // 1. create a gesture recognizer (tap gesture)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(touchBackground(sender:)))
         // 2. add the gesture recognizer to a view
@@ -117,7 +117,10 @@ public class DbDropDownView: UITableView
             self.semanticContentAttribute = .forceRightToLeft
         }
         
-        // Re-format frames and theme colors        
+        // Re-format Touch background frames and theme colors
+        self.bgTouchView.backgroundColor = theme.bgTouchViewColor
+        
+        // Re-format frames and theme colors
         self.estimatedRowHeight = theme.cellHeight
         self.layer.borderColor = theme.borderColor.cgColor
         self.layer.cornerRadius = tableCornerRadius
@@ -191,6 +194,7 @@ public class DbDropDownView: UITableView
         
         // -- Add touch out background --
         if self.hideOptionsWhenTouchOut {
+            self.bgTouchView.alpha = 0
             parent.superview?.insertSubview(self.bgTouchView, belowSubview: self)
         }
         
@@ -203,11 +207,18 @@ public class DbDropDownView: UITableView
                            options: .curveEaseInOut,
                            animations: { () -> Void in
                             
+                            // -- Default .TopToBottom --
+                            var valY = parent.frame.maxY + self.tableYOffset
+                            if self.displayDirection == .BottomToTop {
+                               valY = parent.frame.minY - (self.tableListHeight+self.tableYOffset)
+                            }
+                            
                             self.frame = CGRect(x: parent.frame.minX,
-                                                          y: parent.frame.maxY+self.tableYOffset,
+                                                          y: valY,
                                                           width: parent.frame.width,
                                                           height: self.tableListHeight)
                             self.alpha = 1
+                            self.bgTouchView.alpha = 1
                             // -- Reload DataTable --
                             if reloadData {
                                 self.setContentOffset(.zero, animated:false)
@@ -229,11 +240,19 @@ public class DbDropDownView: UITableView
                            animations: { () -> Void in
                             
                             self.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+                            
+                            // -- Default .TopToBottom --
+                            var valY = parent.frame.maxY + self.tableYOffset
+                            if self.displayDirection == .BottomToTop {
+                                valY = parent.frame.minY - (self.tableListHeight+self.tableYOffset)
+                            }
+                            
                             self.frame = CGRect(x: parent.frame.minX,
-                                                          y: parent.frame.maxY+self.tableYOffset,
+                                                          y: valY, ///parent.frame.maxY+self.tableYOffset,
                                                           width: parent.frame.width,
                                                           height: self.tableListHeight)
                             self.alpha = 1
+                            self.bgTouchView.alpha = 1
                             // -- Reload DataTable --
                             if reloadData {
                                 self.setContentOffset(.zero, animated:false)
@@ -251,11 +270,18 @@ public class DbDropDownView: UITableView
                            initialSpringVelocity: 0.5,
                            options: .curveEaseInOut, animations: {
                             
+                            // -- Default .TopToBottom --
+                            var valY = parent.frame.maxY + self.tableYOffset
+                            if self.displayDirection == .BottomToTop {
+                                valY = parent.frame.minY - (self.tableListHeight+self.tableYOffset)
+                            }
+                            
                             self.frame = CGRect(x: parent.frame.minX,
-                                                          y: parent.frame.maxY+self.tableYOffset,
+                                                          y: valY,
                                                           width: parent.frame.width,
                                                           height: self.tableListHeight)
                             self.alpha = 1
+                            self.bgTouchView.alpha = 1
                             // -- Reload DataTable --
                             if reloadData {
                                 self.setContentOffset(.zero, animated:false)
@@ -283,11 +309,19 @@ public class DbDropDownView: UITableView
                            initialSpringVelocity: 0.1,
                            options: .curveEaseInOut,
                            animations: { () -> Void in
+                            
+                            // -- Default .TopToBottom --
+                            var valY = self.frame.minY
+                            if self.displayDirection == .BottomToTop {
+                                valY = self.frame.minY + self.tableListHeight
+                            }
+                            
                             self.frame = CGRect(x: self.frame.minX,
-                                                          y: self.frame.minY,
+                                                          y: valY,
                                                           width: self.frame.width,
                                                           height: 0)
                             self.alpha = 0
+                            self.bgTouchView.alpha = 0
                             
                             self.privateTableDoingDisappear()
                             
@@ -309,6 +343,7 @@ public class DbDropDownView: UITableView
                             self.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
                             self.center = CGPoint(x: self.frame.midX, y: self.frame.minY)
                             self.alpha = 0
+                            self.bgTouchView.alpha = 0
                             
                             self.privateTableDoingDisappear()
                             

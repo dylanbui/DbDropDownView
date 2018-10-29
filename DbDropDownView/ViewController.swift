@@ -64,7 +64,9 @@ class ViewController: UIViewController
         listViewPanel.animationType = .Default //.Bouncing //.Classic
         listViewPanel.tableListHeight = 100
         listViewPanel.tableHeaderView = header
-//        listViewPanel.isScrollEnabled = false
+        // listViewPanel.isScrollEnabled = false
+        listViewPanel.displayDirection = .BottomToTop
+//        listViewPanel.hideOptionsWhenTouchOut = true
         listViewPanel.tableYOffset = 5
         
     }

@@ -15,6 +15,10 @@ public enum DbDropDownViewAnimationType: Int {
     case Classic // This is DropDown
 }
 
+public enum DbDropDownViewDirection: Int {
+    case TopToBottom
+    case BottomToTop
+}
 
 ////////////////////////////////////////////////////////////////////////
 // Search Text Field Theme
@@ -33,7 +37,8 @@ public struct DbDropDownViewTheme
     public var subtitleFontColor: UIColor
     
     public var checkmarkColor: UIColor? // = nil , dont use checkmark
-    public var placeholderColor: UIColor?
+    public var bgTouchViewColor: UIColor = UIColor.clear // Touch out background color
+    
     // -- Arrow --
     public var arrowPadding: CGFloat = 7.0
     
@@ -80,6 +85,7 @@ public struct DbDropDownViewTheme
         theme.subtitleFont = UIFont.italicSystemFont(ofSize: 10)
         theme.subtitleFontColor = UIColor.brown
         theme.checkmarkColor = UIColor.red // User checkmark
+        theme.bgTouchViewColor = UIColor.yellow.withAlphaComponent(0.4)
         return theme
     }
 }
