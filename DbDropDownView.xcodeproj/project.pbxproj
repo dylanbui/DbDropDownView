@@ -12,6 +12,13 @@
 		BB591D3E2186EEEA00AAD036 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB591D3C2186EEEA00AAD036 /* Main.storyboard */; };
 		BB591D402186EEEC00AAD036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB591D3F2186EEEC00AAD036 /* Assets.xcassets */; };
 		BB591D432186EEEC00AAD036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB591D412186EEEC00AAD036 /* LaunchScreen.storyboard */; };
+		BB591D532186F08100AAD036 /* DbDropDownViewCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB591D4B2186F08000AAD036 /* DbDropDownViewCommon.swift */; };
+		BB591D542186F08100AAD036 /* DbDropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB591D4C2186F08000AAD036 /* DbDropDownView.swift */; };
+		BB591D552186F08100AAD036 /* DbSelectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB591D4D2186F08000AAD036 /* DbSelectBox.swift */; };
+		BB591D562186F08100AAD036 /* UIDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB591D4F2186F08000AAD036 /* UIDropDown.swift */; };
+		BB591D572186F08100AAD036 /* DbDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB591D502186F08000AAD036 /* DbDropDown.swift */; };
+		BB591D582186F08100AAD036 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB591D512186F08000AAD036 /* SearchTextField.swift */; };
+		BB591D592186F08100AAD036 /* DbDropDownCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB591D522186F08000AAD036 /* DbDropDownCommon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +29,13 @@
 		BB591D3F2186EEEC00AAD036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB591D422186EEEC00AAD036 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB591D442186EEEC00AAD036 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB591D4B2186F08000AAD036 /* DbDropDownViewCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbDropDownViewCommon.swift; sourceTree = "<group>"; };
+		BB591D4C2186F08000AAD036 /* DbDropDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbDropDownView.swift; sourceTree = "<group>"; };
+		BB591D4D2186F08000AAD036 /* DbSelectBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbSelectBox.swift; sourceTree = "<group>"; };
+		BB591D4F2186F08000AAD036 /* UIDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDropDown.swift; sourceTree = "<group>"; };
+		BB591D502186F08000AAD036 /* DbDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbDropDown.swift; sourceTree = "<group>"; };
+		BB591D512186F08000AAD036 /* SearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		BB591D522186F08000AAD036 /* DbDropDownCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbDropDownCommon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +68,8 @@
 		BB591D372186EEEA00AAD036 /* DbDropDownView */ = {
 			isa = PBXGroup;
 			children = (
+				BB591D4A2186F08000AAD036 /* DbDropDownView */,
+				BB591D4E2186F08000AAD036 /* DemoCode */,
 				BB591D382186EEEA00AAD036 /* AppDelegate.swift */,
 				BB591D3A2186EEEA00AAD036 /* ViewController.swift */,
 				BB591D3C2186EEEA00AAD036 /* Main.storyboard */,
@@ -62,6 +78,27 @@
 				BB591D442186EEEC00AAD036 /* Info.plist */,
 			);
 			path = DbDropDownView;
+			sourceTree = "<group>";
+		};
+		BB591D4A2186F08000AAD036 /* DbDropDownView */ = {
+			isa = PBXGroup;
+			children = (
+				BB591D4B2186F08000AAD036 /* DbDropDownViewCommon.swift */,
+				BB591D4C2186F08000AAD036 /* DbDropDownView.swift */,
+				BB591D4D2186F08000AAD036 /* DbSelectBox.swift */,
+			);
+			path = DbDropDownView;
+			sourceTree = "<group>";
+		};
+		BB591D4E2186F08000AAD036 /* DemoCode */ = {
+			isa = PBXGroup;
+			children = (
+				BB591D4F2186F08000AAD036 /* UIDropDown.swift */,
+				BB591D502186F08000AAD036 /* DbDropDown.swift */,
+				BB591D512186F08000AAD036 /* SearchTextField.swift */,
+				BB591D522186F08000AAD036 /* DbDropDownCommon.swift */,
+			);
+			path = DemoCode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +172,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB591D592186F08100AAD036 /* DbDropDownCommon.swift in Sources */,
+				BB591D562186F08100AAD036 /* UIDropDown.swift in Sources */,
 				BB591D3B2186EEEA00AAD036 /* ViewController.swift in Sources */,
+				BB591D572186F08100AAD036 /* DbDropDown.swift in Sources */,
+				BB591D552186F08100AAD036 /* DbSelectBox.swift in Sources */,
+				BB591D542186F08100AAD036 /* DbDropDownView.swift in Sources */,
+				BB591D532186F08100AAD036 /* DbDropDownViewCommon.swift in Sources */,
 				BB591D392186EEEA00AAD036 /* AppDelegate.swift in Sources */,
+				BB591D582186F08100AAD036 /* SearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +327,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 99JD3QH9V9;
 				INFOPLIST_FILE = DbDropDownView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -290,7 +335,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = vn.propzy.DbDropDownView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -301,6 +346,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 99JD3QH9V9;
 				INFOPLIST_FILE = DbDropDownView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,7 +354,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = vn.propzy.DbDropDownView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
