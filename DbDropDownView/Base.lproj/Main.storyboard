@@ -40,7 +40,7 @@
                                 <color key="backgroundColor" red="0.45449195980000001" green="1" blue="0.18324481779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4of-2a-OFm">
-                                <rect key="frame" x="37" y="212" width="116" height="30"/>
+                                <rect key="frame" x="37" y="408" width="116" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Show Panel"/>
                                 <connections>
@@ -48,7 +48,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Iz-Ca-AiU">
-                                <rect key="frame" x="210" y="212" width="116" height="30"/>
+                                <rect key="frame" x="210" y="408" width="116" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Hide Panel"/>
                                 <connections>
@@ -56,7 +56,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y4e-Ei-ELt">
-                                <rect key="frame" x="37" y="250" width="300" height="5"/>
+                                <rect key="frame" x="37" y="393" width="300" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.45449195980000001" green="1" blue="0.18324481779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>

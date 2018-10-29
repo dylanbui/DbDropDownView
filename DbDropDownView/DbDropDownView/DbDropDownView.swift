@@ -26,7 +26,7 @@ public class DbDropDownView: UITableView
     public var tableYOffset: CGFloat = 0.0
     public var tableCornerRadius: CGFloat = 5.0
     /// Maximum height of the table list
-    public var tableListHeight = 100
+    public var tableListHeight: CGFloat = 100.0
     
     public fileprivate(set) var selectedIndex: Int?
     public var hideOptionsWhenSelect = true // Hide when choose
@@ -206,7 +206,7 @@ public class DbDropDownView: UITableView
                             self.frame = CGRect(x: parent.frame.minX,
                                                           y: parent.frame.maxY+self.tableYOffset,
                                                           width: parent.frame.width,
-                                                          height: CGFloat(self.tableListHeight))
+                                                          height: self.tableListHeight)
                             self.alpha = 1
                             // -- Reload DataTable --
                             if reloadData {
@@ -232,7 +232,7 @@ public class DbDropDownView: UITableView
                             self.frame = CGRect(x: parent.frame.minX,
                                                           y: parent.frame.maxY+self.tableYOffset,
                                                           width: parent.frame.width,
-                                                          height: CGFloat(self.tableListHeight))
+                                                          height: self.tableListHeight)
                             self.alpha = 1
                             // -- Reload DataTable --
                             if reloadData {
@@ -254,7 +254,7 @@ public class DbDropDownView: UITableView
                             self.frame = CGRect(x: parent.frame.minX,
                                                           y: parent.frame.maxY+self.tableYOffset,
                                                           width: parent.frame.width,
-                                                          height: CGFloat(self.tableListHeight))
+                                                          height: self.tableListHeight)
                             self.alpha = 1
                             // -- Reload DataTable --
                             if reloadData {
@@ -314,7 +314,8 @@ public class DbDropDownView: UITableView
                             
             }, completion: { (didFinish) -> Void in
                 self.bgTouchView.removeFromSuperview()
-                self.removeFromSuperview()
+                // -- Phai tra ve size ban dau truoc khi removeFromSuperview --
+                self.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
                 self.privateTableDidDisappear()
             })
             
