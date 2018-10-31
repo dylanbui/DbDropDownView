@@ -37,7 +37,7 @@ public struct DbDropDownViewTheme
     public var subtitleFontColor: UIColor
     
     public var checkmarkColor: UIColor? // = nil , dont use checkmark
-    public var bgTouchViewColor: UIColor = UIColor.clear // Touch out background color
+    public var dismissableViewColor: UIColor = UIColor.clear // Touch out background color
     
     // -- Arrow --
     public var arrowPadding: CGFloat = 7.0
@@ -85,7 +85,7 @@ public struct DbDropDownViewTheme
         theme.subtitleFont = UIFont.italicSystemFont(ofSize: 10)
         theme.subtitleFontColor = UIColor.brown
         theme.checkmarkColor = UIColor.red // User checkmark
-        theme.bgTouchViewColor = UIColor.yellow.withAlphaComponent(0.4)
+        theme.dismissableViewColor = UIColor.yellow.withAlphaComponent(0.4)
         return theme
     }
 }

@@ -19,9 +19,6 @@ public class DbDropDownView: UITableView
     /// Force the results list to adapt to RTL languages
     public var forceRightToLeft = false
     
-    /// Set the results list's header
-//    public var resultsListHeader: UIView?
-    
     // Move the table around to customize for your layout
     public var tableYOffset: CGFloat = 0.0
     public var tableCornerRadius: CGFloat = 5.0
@@ -55,14 +52,16 @@ public class DbDropDownView: UITableView
     
     ////////////////////////////////////////////////////////////////////////
     // Private implementation
-    fileprivate var bgTouchView: UIView!
+    fileprivate var dismissableView: UIView!
     fileprivate var fontConversionRate: CGFloat = 0.7
     fileprivate static let cellIdentifier = "DbDropDownViewItem"
+    fileprivate var reuseIdentifier: String?
     
     fileprivate var dataSourceItems = [DbDropDownViewItem]()
     
     // Closures
     fileprivate var privatedidSelect: ([DbDropDownViewItem], Int) -> () = {options, index in }
+    fileprivate var cellConfiguration: ([DbDropDownViewItem], IndexPath, UITableViewCell) -> () = {options, index, cell  in }
     // -- Appear --
     fileprivate var privateTableWillAppear: () -> () = { }
     fileprivate var privateTableDoingAppear: () -> () = { }
@@ -99,11 +98,11 @@ public class DbDropDownView: UITableView
 //        self.tableHeaderView = resultsListHeader
         
         // -- Touch background --
-        self.bgTouchView = UIView(frame: UIScreen.main.bounds)
+        self.dismissableView = UIView(frame: UIScreen.main.bounds)
         // 1. create a gesture recognizer (tap gesture)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(touchBackground(sender:)))
         // 2. add the gesture recognizer to a view
-        self.bgTouchView.addGestureRecognizer(tapGesture)
+        self.dismissableView.addGestureRecognizer(tapGesture)
     }
     
     // Create the filter table and shadow view
@@ -118,10 +117,10 @@ public class DbDropDownView: UITableView
         }
         
         // Re-format Touch background frames and theme colors
-        self.bgTouchView.backgroundColor = theme.bgTouchViewColor
+        self.dismissableView.backgroundColor = theme.dismissableViewColor
         
         // Re-format frames and theme colors
-        self.estimatedRowHeight = theme.cellHeight
+        self.estimatedRowHeight = theme.cellHeight > 0 ? theme.cellHeight : UITableViewAutomaticDimension
         self.layer.borderColor = theme.borderColor.cgColor
         self.layer.cornerRadius = tableCornerRadius
         self.separatorColor = theme.separatorColor
@@ -134,12 +133,22 @@ public class DbDropDownView: UITableView
     {
         hideDropDown()
     }
-
+    
+    func registerCellNib(nib: UINib, forCellReuseIdentifier identifier: String)
+    {
+        self.register(nib, forCellReuseIdentifier: identifier)
+        self.reuseIdentifier = identifier
+    }
     
     // Actions Methods
     public func didSelect(completion: @escaping (_ options: [DbDropDownViewItem], _ index: Int) -> ())
     {
         privatedidSelect = completion
+    }
+    
+    public func cellConfiguration(configuration: @escaping (_ options: [DbDropDownViewItem], _ index: IndexPath, _ cell: UITableViewCell) -> ())
+    {
+        cellConfiguration = configuration
     }
     
     public func tableWillAppear(completion: @escaping () -> ())
@@ -194,8 +203,8 @@ public class DbDropDownView: UITableView
         
         // -- Add touch out background --
         if self.hideOptionsWhenTouchOut {
-            self.bgTouchView.alpha = 0
-            parent.superview?.insertSubview(self.bgTouchView, belowSubview: self)
+            self.dismissableView.alpha = 0
+            parent.superview?.insertSubview(self.dismissableView, belowSubview: self)
         }
         
         switch animationType {
@@ -218,7 +227,7 @@ public class DbDropDownView: UITableView
                                                           width: parent.frame.width,
                                                           height: self.tableListHeight)
                             self.alpha = 1
-                            self.bgTouchView.alpha = 1
+                            self.dismissableView.alpha = 1
                             // -- Reload DataTable --
                             if reloadData {
                                 self.setContentOffset(.zero, animated:false)
@@ -252,7 +261,7 @@ public class DbDropDownView: UITableView
                                                           width: parent.frame.width,
                                                           height: self.tableListHeight)
                             self.alpha = 1
-                            self.bgTouchView.alpha = 1
+                            self.dismissableView.alpha = 1
                             // -- Reload DataTable --
                             if reloadData {
                                 self.setContentOffset(.zero, animated:false)
@@ -281,7 +290,7 @@ public class DbDropDownView: UITableView
                                                           width: parent.frame.width,
                                                           height: self.tableListHeight)
                             self.alpha = 1
-                            self.bgTouchView.alpha = 1
+                            self.dismissableView.alpha = 1
                             // -- Reload DataTable --
                             if reloadData {
                                 self.setContentOffset(.zero, animated:false)
@@ -321,12 +330,12 @@ public class DbDropDownView: UITableView
                                                           width: self.frame.width,
                                                           height: 0)
                             self.alpha = 0
-                            self.bgTouchView.alpha = 0
+                            self.dismissableView.alpha = 0
                             
                             self.privateTableDoingDisappear()
                             
             }, completion: { (didFinish) -> Void in
-                self.bgTouchView.removeFromSuperview()
+                self.dismissableView.removeFromSuperview()
                 self.removeFromSuperview()
                 self.privateTableDidDisappear()
             })
@@ -343,12 +352,12 @@ public class DbDropDownView: UITableView
                             self.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
                             self.center = CGPoint(x: self.frame.midX, y: self.frame.minY)
                             self.alpha = 0
-                            self.bgTouchView.alpha = 0
+                            self.dismissableView.alpha = 0
                             
                             self.privateTableDoingDisappear()
                             
             }, completion: { (didFinish) -> Void in
-                self.bgTouchView.removeFromSuperview()
+                self.dismissableView.removeFromSuperview()
                 // -- Phai tra ve size ban dau truoc khi removeFromSuperview --
                 self.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
                 self.privateTableDidDisappear()
@@ -367,54 +376,65 @@ extension DbDropDownView: UITableViewDelegate, UITableViewDataSource
         return dataSourceItems.count
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    private func makeTableViewCellWithReuseIdentifier(identifier: String, indexPath: IndexPath) -> UITableViewCell
     {
-        var cell = tableView.dequeueReusableCell(withIdentifier: DbDropDownView.cellIdentifier)
-        
-        if cell == nil {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: DbDropDownView.cellIdentifier)
-        }
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: identifier)
         
         // print("title = \(dataSourceItems[(indexPath as NSIndexPath).row].title)")
         // -- Format cell --
-        cell!.backgroundColor = theme.bgCellColor
+        cell.backgroundColor = theme.bgCellColor
         
-        cell!.layoutMargins = UIEdgeInsets.zero
-        cell!.preservesSuperviewLayoutMargins = false
-        cell!.textLabel?.font = theme.titlefont
-        cell!.textLabel?.textColor = theme.titleFontColor
+        cell.layoutMargins = UIEdgeInsets.zero
+        cell.preservesSuperviewLayoutMargins = false
+        cell.textLabel?.font = theme.titlefont
+        cell.textLabel?.textColor = theme.titleFontColor
         
-        cell!.detailTextLabel?.font = UIFont(name: theme.subtitleFont.fontName, size: theme.subtitleFont.pointSize * fontConversionRate)
-        cell!.detailTextLabel?.textColor = theme.subtitleFontColor
+        cell.detailTextLabel?.font = UIFont(name: theme.subtitleFont.fontName, size: theme.subtitleFont.pointSize * fontConversionRate)
+        cell.detailTextLabel?.textColor = theme.subtitleFontColor
         
-        // -- Fill data to cell --
-        cell!.textLabel?.text = dataSourceItems[(indexPath as NSIndexPath).row].title
-        cell!.detailTextLabel?.text = dataSourceItems[(indexPath as NSIndexPath).row].subtitle
-        
-        if let attributedTitle = dataSourceItems[(indexPath as NSIndexPath).row].attributedTitle {
-            cell!.textLabel?.attributedText = attributedTitle
-        }
-        if let attributedSubtitle = dataSourceItems[(indexPath as NSIndexPath).row].attributedSubtitle {
-            cell!.detailTextLabel?.attributedText = attributedSubtitle
-        }
-        
-        cell!.imageView?.image = dataSourceItems[(indexPath as NSIndexPath).row].image
-        
-        // -- Check use checkmark --
-        cell!.accessoryType = .none
-        if theme.checkmarkColor != nil {
-            cell!.accessoryType = indexPath.row == selectedIndex ? .checkmark : .none
-            cell?.tintColor = theme.checkmarkColor
-        }
-        
-        cell!.selectionStyle = .none
-        
-        return cell!
+        cell.selectionStyle = .none
+
+        return cell
     }
     
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        return theme.cellHeight
+        var cell: UITableViewCell?
+
+        if let identifier = self.reuseIdentifier {
+            cell = tableView.dequeueReusableCell(withIdentifier: identifier)
+        } else {
+            // -- Make default cell --
+            cell = tableView.dequeueReusableCell(withIdentifier: DbDropDownView.cellIdentifier)
+            if cell == nil {
+                cell = self.makeTableViewCellWithReuseIdentifier(identifier: DbDropDownView.cellIdentifier, indexPath: indexPath)
+            }
+            
+            // -- Fill data to default cell --
+            cell?.textLabel?.text = dataSourceItems[(indexPath as NSIndexPath).row].title
+            cell?.detailTextLabel?.text = dataSourceItems[(indexPath as NSIndexPath).row].subtitle
+            
+            if let attributedTitle = dataSourceItems[(indexPath as NSIndexPath).row].attributedTitle {
+                cell?.textLabel?.attributedText = attributedTitle
+            }
+            if let attributedSubtitle = dataSourceItems[(indexPath as NSIndexPath).row].attributedSubtitle {
+                cell?.detailTextLabel?.attributedText = attributedSubtitle
+            }
+            
+            cell?.imageView?.image = dataSourceItems[(indexPath as NSIndexPath).row].image
+            
+            // -- Check use checkmark --
+            cell?.accessoryType = .none
+            if theme.checkmarkColor != nil {
+                cell?.accessoryType = indexPath.row == selectedIndex ? .checkmark : .none
+                cell?.tintColor = theme.checkmarkColor
+            }
+        }
+
+        // -- Run configuration cell --
+        self.cellConfiguration(dataSourceItems, indexPath, cell!)
+        
+        return cell!
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)

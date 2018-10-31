@@ -158,6 +158,7 @@ class DbSelectBox: UIControl
     public func didSelect(completion: @escaping (_ options: [DbDropDownViewItem], _ index: Int) -> ())
     {
         self.dropDownView.didSelect(completion: { (options, index) in
+            self.title.text = options[index].title
             completion(options, index)
         })
     }
