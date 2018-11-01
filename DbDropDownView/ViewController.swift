@@ -20,6 +20,8 @@ class ViewController: UIViewController
     
     var listViewPanel: DbDropDownView!
     
+    var sheet: DbSheetView!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -115,6 +117,17 @@ class ViewController: UIViewController
 //        listViewPanel.hideOptionsWhenTouchOut = true
         listViewPanel.tableYOffset = 5
         
+        
+        let header_2 = UILabel(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 200))
+        header_2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        header_2.textAlignment = .center
+        header_2.font = UIFont.systemFont(ofSize: 14)
+        header_2.text = "TP Hồ Chí Minh"
+        header_2.textColor = UIColor.blue
+        header_2.backgroundColor = UIColor.green.withAlphaComponent(0.5)
+        
+        sheet = DbSheetView(withContentView: header_2)
+
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -137,6 +150,12 @@ class ViewController: UIViewController
 
         
     }
+    
+    @IBAction func btnSheet_Click(_ sender: AnyObject)
+    {
+        sheet.show()
+    }
+
     
     @IBAction func btnShow_Click(_ sender: AnyObject)
     {
