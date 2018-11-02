@@ -78,9 +78,9 @@ public class DbDropDownView: UITableView
         setup()
     }
     
-    public convenience init(withAnchorView: UIView)
+    public convenience init(withAnchorView: UIView, andFrame: CGRect = .zero)
     {
-        self.init(frame: .zero, style: .plain)
+        self.init(frame: andFrame, style: .plain)
         self.anchorView = withAnchorView
     }
     
@@ -95,7 +95,6 @@ public class DbDropDownView: UITableView
     {
         self.dataSource = self
         self.delegate = self
-//        self.tableHeaderView = resultsListHeader
         
         // -- Touch background --
         self.dismissableView = UIView(frame: UIScreen.main.bounds)
@@ -111,7 +110,6 @@ public class DbDropDownView: UITableView
         self.layer.masksToBounds = true
         self.layer.borderWidth = theme.borderWidth > 0 ? theme.borderWidth : 0.5
         //self.separatorInset = UIEdgeInsets.zero // Padding left
-        // self.tableHeaderView = resultsListHeader
         if forceRightToLeft {
             self.semanticContentAttribute = .forceRightToLeft
         }
@@ -138,6 +136,11 @@ public class DbDropDownView: UITableView
     {
         self.register(nib, forCellReuseIdentifier: identifier)
         self.reuseIdentifier = identifier
+    }
+    
+    func registerCellString(identifier: String)
+    {
+        self.registerCellNib(nib: UINib(nibName: identifier, bundle: nil), forCellReuseIdentifier: identifier)
     }
     
     // Actions Methods

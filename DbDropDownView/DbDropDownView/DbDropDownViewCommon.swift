@@ -25,7 +25,7 @@ public enum DbDropDownViewDirection: Int {
 
 public struct DbDropDownViewTheme
 {
-    public var cellHeight: CGFloat
+    public var cellHeight: CGFloat = 0
     public var bgColor: UIColor
     public var bgCellColor: UIColor
     public var borderColor: UIColor

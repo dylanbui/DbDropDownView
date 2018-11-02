@@ -51,6 +51,7 @@ class ViewController: UIViewController
         
         listView.registerCellNib(nib: UINib(nibName: "DropDownCell", bundle: nil),
                                  forCellReuseIdentifier: "dropDownCell")
+        // listView.registerCellString(identifier: "DropDownCell")
         
 //        listView.registerCellNib(nib: UINib(nibName: "CustomDropDownCell", bundle: nil),
 //                                 forCellReuseIdentifier: "customDropDownCell")
