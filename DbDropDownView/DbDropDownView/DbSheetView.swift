@@ -1,0 +1,107 @@
+//
+//  DbSheetView.swift
+//  DbDropDownView
+//
+//  Created by Dylan Bui on 11/2/18.
+//  Copyright © 2018 Dylan Bui. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class DbSheetView: UIControl
+{
+    fileprivate var contentView: UIView!
+    fileprivate var dropDownView: DbDropDownView!
+    fileprivate let vclRoot = UIApplication.shared.keyWindow?.rootViewController!
+
+    // Init
+    public override init(frame: CGRect)
+    {
+        super.init(frame: frame)
+    }
+    
+    public convenience init(withContentView: UIView)
+    {
+        self.init(frame: .zero)
+        self.contentView = withContentView
+        setupDropDown()
+        setup()
+    }
+    
+    public required init(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)!
+        setupDropDown()
+        setup()
+    }
+    
+    fileprivate func setupDropDown()
+    {
+        var theme = DbDropDownViewTheme(cellHeight: 0,
+                                   bgColor: UIColor.clear,
+                                   borderColor: UIColor.clear,
+                                   separatorColor: UIColor.clear, font: UIFont.systemFont(ofSize: 10), fontColor: UIColor.black)
+        theme.dismissableViewColor = UIColor.lightGray.withAlphaComponent(0.3)
+        
+        self.dropDownView = DbDropDownView(withAnchorView: self)
+        self.dropDownView.hideOptionsWhenTouchOut = true
+        self.dropDownView.theme = theme //.selectBoxTheme()
+        self.dropDownView.tableYOffset = 5.0 + self.safeAreaBottomPadding()
+        self.dropDownView.tableHeaderView = self.contentView
+        self.dropDownView.isScrollEnabled = false
+        
+        self.dropDownView.displayDirection = .BottomToTop
+        
+        self.dropDownView.tableDoingAppear {
+
+        }
+        
+        self.dropDownView.tableDoingDisappear {
+
+        }
+        
+        self.dropDownView.tableDidDisappear {
+
+        }
+    }
+    
+    fileprivate func setup()
+    {
+        // -- Width full screen --
+        var frame = self.contentView.frame
+        frame.size.width = UIScreen.main.bounds.size.width
+        self.contentView.frame = frame
+        
+        //        return Int(UIScreen.main.bounds.size.width)
+        //        return Int(UIScreen.main.bounds.size.height)
+        self.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height - 1, width: UIScreen.main.bounds.size.width, height: 1.0)
+        self.backgroundColor = UIColor.blue
+        // -- Config title --
+        self.vclRoot?.view.addSubview(self)
+    }
+    
+    func show()
+    {
+        self.dropDownView.tableListHeight = self.contentView.frame.size.height
+        self.dropDownView.showDropDown()
+    }
+
+    func hide()
+    {
+        self.dropDownView.hideDropDown()
+    }
+    
+    private func safeAreaBottomPadding() -> CGFloat!
+    {
+        var bottomPadding: CGFloat! = 0
+        if #available(iOS 11.0, *) {
+            let window = UIApplication.shared.keyWindow
+            bottomPadding = window?.safeAreaInsets.bottom
+            return bottomPadding
+        }
+        return 0
+    }
+
+}
+

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BB328284218AE828004CECE3 /* DbPickerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB328283218AE828004CECE3 /* DbPickerContentView.swift */; };
 		BB591D392186EEEA00AAD036 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB591D382186EEEA00AAD036 /* AppDelegate.swift */; };
 		BB591D3B2186EEEA00AAD036 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB591D3A2186EEEA00AAD036 /* ViewController.swift */; };
 		BB591D3E2186EEEA00AAD036 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB591D3C2186EEEA00AAD036 /* Main.storyboard */; };
@@ -24,10 +23,10 @@
 		BB5F2AB82189A62C00945136 /* CustomDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5F2AB62189A62C00945136 /* CustomDropDownCell.xib */; };
 		BB5F2ABC2189A6D100945136 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F2ABA2189A6D000945136 /* DropDownCell.swift */; };
 		BB5F2ABD2189A6D100945136 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5F2ABB2189A6D100945136 /* DropDownCell.xib */; };
+		BB958448218B7BB900B6BC52 /* DbSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB958447218B7BB900B6BC52 /* DbSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BB328283218AE828004CECE3 /* DbPickerContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbPickerContentView.swift; sourceTree = "<group>"; };
 		BB591D352186EEEA00AAD036 /* DbDropDownView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DbDropDownView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB591D382186EEEA00AAD036 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB591D3A2186EEEA00AAD036 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +45,7 @@
 		BB5F2AB62189A62C00945136 /* CustomDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomDropDownCell.xib; sourceTree = "<group>"; };
 		BB5F2ABA2189A6D000945136 /* DropDownCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		BB5F2ABB2189A6D100945136 /* DropDownCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropDownCell.xib; sourceTree = "<group>"; };
+		BB958447218B7BB900B6BC52 /* DbSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +97,7 @@
 				BB591D4B2186F08000AAD036 /* DbDropDownViewCommon.swift */,
 				BB591D4C2186F08000AAD036 /* DbDropDownView.swift */,
 				BB591D4D2186F08000AAD036 /* DbSelectBox.swift */,
-				BB328283218AE828004CECE3 /* DbPickerContentView.swift */,
+				BB958447218B7BB900B6BC52 /* DbSheetView.swift */,
 			);
 			path = DbDropDownView;
 			sourceTree = "<group>";
@@ -203,11 +203,11 @@
 				BB591D3B2186EEEA00AAD036 /* ViewController.swift in Sources */,
 				BB591D572186F08100AAD036 /* DbDropDown.swift in Sources */,
 				BB591D552186F08100AAD036 /* DbSelectBox.swift in Sources */,
-				BB328284218AE828004CECE3 /* DbPickerContentView.swift in Sources */,
 				BB591D542186F08100AAD036 /* DbDropDownView.swift in Sources */,
 				BB591D532186F08100AAD036 /* DbDropDownViewCommon.swift in Sources */,
 				BB5F2AB72189A62C00945136 /* CustomDropDownCell.swift in Sources */,
 				BB591D392186EEEA00AAD036 /* AppDelegate.swift in Sources */,
+				BB958448218B7BB900B6BC52 /* DbSheetView.swift in Sources */,
 				BB591D582186F08100AAD036 /* SearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
