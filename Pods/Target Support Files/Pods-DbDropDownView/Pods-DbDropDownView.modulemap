@@ -1,0 +1,6 @@
+framework module Pods_DbDropDownView {
+  umbrella header "Pods-DbDropDownView-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController
 {
     @IBOutlet weak var btnShow: UIButton!
@@ -29,7 +30,7 @@ class ViewController: UIViewController
         
         // -- example 1 --
         self.selectBox = DbSelectBox(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
-        self.selectBox.center = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY - 150)
+        self.selectBox.center = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY - 100)
         self.selectBox.dropDownView.dataSourceStrings(["Mexico", "USA", "England", "France", "Germany", "Spain", "Italy", "Canada"])
         self.selectBox.placeholder = "Select your country..."
         // Max results list height - Default: No limit
@@ -118,7 +119,7 @@ class ViewController: UIViewController
 //        listViewPanel.hideOptionsWhenTouchOut = true
         listViewPanel.tableYOffset = 5
         
-        
+        // -- Define Sheet View --
         let header_2 = UILabel(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 200))
         header_2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
         header_2.textAlignment = .center
@@ -127,8 +128,9 @@ class ViewController: UIViewController
         header_2.textColor = UIColor.blue
         header_2.backgroundColor = UIColor.green.withAlphaComponent(0.5)
         
-        sheet = DbSheetView(withContentView: header_2)
-
+        // let header_2: CalendarView = CalendarView()
+        
+        sheet = DbSheetView(withContentView: header_2, andHeight: 310)
     }
     
     override func viewWillAppear(_ animated: Bool)

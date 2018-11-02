@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		859A014AF0924F68DE4F8F92 /* Pods_DbDropDownView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B7BB3C26352975943FAADA /* Pods_DbDropDownView.framework */; };
+		BB235DC0218BFCC7007979AF /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB235DBF218BFCC7007979AF /* CalendarView.swift */; };
+		BB235DC3218BFCDC007979AF /* CalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB235DC2218BFCDC007979AF /* CalendarView.xib */; };
+		BB235DCA218C02A9007979AF /* FormatCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB235DC9218C02A9007979AF /* FormatCalendarCell.swift */; };
+		BB235DE0218C5668007979AF /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB235DDF218C5668007979AF /* UIViewExtension.swift */; };
 		BB591D392186EEEA00AAD036 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB591D382186EEEA00AAD036 /* AppDelegate.swift */; };
 		BB591D3B2186EEEA00AAD036 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB591D3A2186EEEA00AAD036 /* ViewController.swift */; };
 		BB591D3E2186EEEA00AAD036 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB591D3C2186EEEA00AAD036 /* Main.storyboard */; };
@@ -27,6 +32,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A1039D40241BF2D4C6F0B11F /* Pods-DbDropDownView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DbDropDownView.release.xcconfig"; path = "Pods/Target Support Files/Pods-DbDropDownView/Pods-DbDropDownView.release.xcconfig"; sourceTree = "<group>"; };
+		BB235DBF218BFCC7007979AF /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		BB235DC2218BFCDC007979AF /* CalendarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarView.xib; sourceTree = "<group>"; };
+		BB235DC5218C00E2007979AF /* ObjeCBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjeCBridgingHeader.h; sourceTree = "<group>"; };
+		BB235DC9218C02A9007979AF /* FormatCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatCalendarCell.swift; sourceTree = "<group>"; };
+		BB235DDF218C5668007979AF /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		BB591D352186EEEA00AAD036 /* DbDropDownView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DbDropDownView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB591D382186EEEA00AAD036 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB591D3A2186EEEA00AAD036 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +57,8 @@
 		BB5F2ABA2189A6D000945136 /* DropDownCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		BB5F2ABB2189A6D100945136 /* DropDownCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropDownCell.xib; sourceTree = "<group>"; };
 		BB958447218B7BB900B6BC52 /* DbSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbSheetView.swift; sourceTree = "<group>"; };
+		DC87A5707FBF2B6C60F3FB81 /* Pods-DbDropDownView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DbDropDownView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DbDropDownView/Pods-DbDropDownView.debug.xcconfig"; sourceTree = "<group>"; };
+		F7B7BB3C26352975943FAADA /* Pods_DbDropDownView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DbDropDownView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,17 +66,56 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				859A014AF0924F68DE4F8F92 /* Pods_DbDropDownView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		037F05C51C891B6847C48449 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DC87A5707FBF2B6C60F3FB81 /* Pods-DbDropDownView.debug.xcconfig */,
+				A1039D40241BF2D4C6F0B11F /* Pods-DbDropDownView.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5CD405B0D618EBD675407E69 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F7B7BB3C26352975943FAADA /* Pods_DbDropDownView.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BB235DC1218BFCD0007979AF /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				BB235DBF218BFCC7007979AF /* CalendarView.swift */,
+				BB235DC2218BFCDC007979AF /* CalendarView.xib */,
+				BB235DC9218C02A9007979AF /* FormatCalendarCell.swift */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		BB235DCB218C101A007979AF /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				BB591D4B2186F08000AAD036 /* DbDropDownViewCommon.swift */,
+				BB591D4C2186F08000AAD036 /* DbDropDownView.swift */,
+			);
+			path = BaseView;
+			sourceTree = "<group>";
+		};
 		BB591D2C2186EEEA00AAD036 = {
 			isa = PBXGroup;
 			children = (
 				BB591D372186EEEA00AAD036 /* DbDropDownView */,
 				BB591D362186EEEA00AAD036 /* Products */,
+				037F05C51C891B6847C48449 /* Pods */,
+				5CD405B0D618EBD675407E69 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,7 +138,9 @@
 				BB591D3C2186EEEA00AAD036 /* Main.storyboard */,
 				BB591D3F2186EEEC00AAD036 /* Assets.xcassets */,
 				BB591D412186EEEC00AAD036 /* LaunchScreen.storyboard */,
+				BB235DC5218C00E2007979AF /* ObjeCBridgingHeader.h */,
 				BB591D442186EEEC00AAD036 /* Info.plist */,
+				BB235DC1218BFCD0007979AF /* CalendarView */,
 			);
 			path = DbDropDownView;
 			sourceTree = "<group>";
@@ -94,8 +148,8 @@
 		BB591D4A2186F08000AAD036 /* DbDropDownView */ = {
 			isa = PBXGroup;
 			children = (
-				BB591D4B2186F08000AAD036 /* DbDropDownViewCommon.swift */,
-				BB591D4C2186F08000AAD036 /* DbDropDownView.swift */,
+				BB235DDF218C5668007979AF /* UIViewExtension.swift */,
+				BB235DCB218C101A007979AF /* BaseView */,
 				BB591D4D2186F08000AAD036 /* DbSelectBox.swift */,
 				BB958447218B7BB900B6BC52 /* DbSheetView.swift */,
 			);
@@ -131,9 +185,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BB591D472186EEEC00AAD036 /* Build configuration list for PBXNativeTarget "DbDropDownView" */;
 			buildPhases = (
+				44175122D324CBF4ACB94DEF /* [CP] Check Pods Manifest.lock */,
 				BB591D312186EEEA00AAD036 /* Sources */,
 				BB591D322186EEEA00AAD036 /* Frameworks */,
 				BB591D332186EEEA00AAD036 /* Resources */,
+				1B13912A54147D541761DB38 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -156,6 +212,7 @@
 				TargetAttributes = {
 					BB591D342186EEEA00AAD036 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 					};
 				};
 			};
@@ -182,6 +239,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB235DC3218BFCDC007979AF /* CalendarView.xib in Resources */,
 				BB591D432186EEEC00AAD036 /* LaunchScreen.storyboard in Resources */,
 				BB591D402186EEEC00AAD036 /* Assets.xcassets in Resources */,
 				BB591D3E2186EEEA00AAD036 /* Main.storyboard in Resources */,
@@ -192,20 +250,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1B13912A54147D541761DB38 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DbDropDownView/Pods-DbDropDownView-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
+				"${BUILT_PRODUCTS_DIR}/DKChainableAnimationKit/DKChainableAnimationKit.framework",
+				"${BUILT_PRODUCTS_DIR}/DateTimePicker/DateTimePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DKChainableAnimationKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateTimePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DbDropDownView/Pods-DbDropDownView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		44175122D324CBF4ACB94DEF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DbDropDownView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BB591D312186EEEA00AAD036 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB235DE0218C5668007979AF /* UIViewExtension.swift in Sources */,
 				BB5F2ABC2189A6D100945136 /* DropDownCell.swift in Sources */,
 				BB591D592186F08100AAD036 /* DbDropDownCommon.swift in Sources */,
 				BB591D562186F08100AAD036 /* UIDropDown.swift in Sources */,
 				BB591D3B2186EEEA00AAD036 /* ViewController.swift in Sources */,
 				BB591D572186F08100AAD036 /* DbDropDown.swift in Sources */,
 				BB591D552186F08100AAD036 /* DbSelectBox.swift in Sources */,
+				BB235DC0218BFCC7007979AF /* CalendarView.swift in Sources */,
 				BB591D542186F08100AAD036 /* DbDropDownView.swift in Sources */,
 				BB591D532186F08100AAD036 /* DbDropDownViewCommon.swift in Sources */,
 				BB5F2AB72189A62C00945136 /* CustomDropDownCell.swift in Sources */,
+				BB235DCA218C02A9007979AF /* FormatCalendarCell.swift in Sources */,
 				BB591D392186EEEA00AAD036 /* AppDelegate.swift in Sources */,
 				BB958448218B7BB900B6BC52 /* DbSheetView.swift in Sources */,
 				BB591D582186F08100AAD036 /* SearchTextField.swift in Sources */,
@@ -350,8 +456,10 @@
 		};
 		BB591D482186EEEC00AAD036 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC87A5707FBF2B6C60F3FB81 /* Pods-DbDropDownView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 99JD3QH9V9;
 				INFOPLIST_FILE = DbDropDownView/Info.plist;
@@ -362,6 +470,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = vn.propzy.DbDropDownView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = DbDropDownView/ObjeCBridgingHeader.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -369,8 +479,10 @@
 		};
 		BB591D492186EEEC00AAD036 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1039D40241BF2D4C6F0B11F /* Pods-DbDropDownView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 99JD3QH9V9;
 				INFOPLIST_FILE = DbDropDownView/Info.plist;
@@ -381,6 +493,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = vn.propzy.DbDropDownView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = DbDropDownView/ObjeCBridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

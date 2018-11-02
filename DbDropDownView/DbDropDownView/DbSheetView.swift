@@ -13,7 +13,6 @@ class DbSheetView: UIControl
 {
     fileprivate var contentView: UIView!
     fileprivate var dropDownView: DbDropDownView!
-    fileprivate let vclRoot = UIApplication.shared.keyWindow?.rootViewController!
 
     // Init
     public override init(frame: CGRect)
@@ -24,6 +23,19 @@ class DbSheetView: UIControl
     public convenience init(withContentView: UIView)
     {
         self.init(frame: .zero)
+        self.contentView = withContentView
+        setupDropDown()
+        setup()
+    }
+    
+    public convenience init(withContentView: UIView, andHeight: CGFloat)
+    {
+        self.init(frame: .zero)
+        var frame = self.contentView.frame
+        frame.size = CGSize(width: UIScreen.main.bounds.size.width, height: andHeight)
+        self.contentView.frame = frame
+//        self.contentView.frame.size.height
+//        UIScreen.main.bounds.size.width
         self.contentView = withContentView
         setupDropDown()
         setup()
@@ -49,6 +61,7 @@ class DbSheetView: UIControl
         self.dropDownView.theme = theme //.selectBoxTheme()
         self.dropDownView.tableYOffset = 5.0 + self.safeAreaBottomPadding()
         self.dropDownView.tableHeaderView = self.contentView
+        self.dropDownView.tableCornerRadius = 0.0
         self.dropDownView.isScrollEnabled = false
         
         self.dropDownView.displayDirection = .BottomToTop
@@ -77,8 +90,12 @@ class DbSheetView: UIControl
         //        return Int(UIScreen.main.bounds.size.height)
         self.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height - 1, width: UIScreen.main.bounds.size.width, height: 1.0)
         self.backgroundColor = UIColor.blue
-        // -- Config title --
-        self.vclRoot?.view.addSubview(self)
+        
+        // -- Add to root view --
+        guard let vclRoot = UIApplication.shared.keyWindow?.rootViewController else {
+            fatalError("RootViewController not found")
+        }
+        vclRoot.view.addSubview(self)
     }
     
     func show()
