@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//import SemiModalViewController
 
 
 class ViewController: UIViewController
@@ -193,6 +194,62 @@ class ViewController: UIViewController
         listViewPanel.hideDropDown()
     }
 
+    
+    @IBAction func btnSemi_1_Click(_ sender: AnyObject)
+    {
+
+        let header_2 = UILabel(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 100))
+        // header_2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        header_2.textAlignment = .center
+        header_2.font = UIFont.systemFont(ofSize: 14)
+        header_2.text = "TP Hồ Chí Minh"
+        header_2.textColor = UIColor.blue
+        header_2.backgroundColor = UIColor.green//.withAlphaComponent(1.0)
+        
+//        let view = UIView(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 100))
+//        view.addSubview(header_2)
+        
+        let options: [DbSemiModalOption: Any] = [DbSemiModalOption.pushParentBack: true]
+        self.presentSemiView(header_2, options: options)
+//        self.presentSemiView(view)
+        
+    }
+
+    @IBAction func btnSemi_2_Click(_ sender: AnyObject)
+    {
+//        .transitionStyle         : DbSemiModalTransitionStyle.slideUp,
+
+//        let header_2 = UILabel(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 200))
+//        header_2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+//        header_2.textAlignment = .center
+//        header_2.font = UIFont.systemFont(ofSize: 14)
+//        header_2.text = "TP Hồ Chí Minh"
+//        header_2.textColor = UIColor.blue
+//        header_2.backgroundColor = UIColor.green.withAlphaComponent(0.5)
+//
+//        let options: [DbSemiModalOption: Any] = [
+//            DbSemiModalOption.pushParentBack: false,
+//            DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.fadeInOut,
+//            DbSemiModalOption.animationDuration: 0.3
+//        ]
+//
+//        self.presentSemiView(header_2, options: options)
+        
+//        let view = UIView(frame: UIScreen.main.bounds)
+//        view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 300)
+//        view.backgroundColor = UIColor.red
+//
+//        let options: [SemiModalOption : Any] = [
+//            SemiModalOption.pushParentBack: true
+//        ]
+//
+//        presentSemiView(view, options: options) {
+//            print("Completed!")
+//        }
+        
+    }
+
+    
 
 }
 

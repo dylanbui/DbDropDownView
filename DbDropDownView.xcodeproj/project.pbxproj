@@ -12,6 +12,8 @@
 		BB235DC3218BFCDC007979AF /* CalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB235DC2218BFCDC007979AF /* CalendarView.xib */; };
 		BB235DCA218C02A9007979AF /* FormatCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB235DC9218C02A9007979AF /* FormatCalendarCell.swift */; };
 		BB235DE0218C5668007979AF /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB235DDF218C5668007979AF /* UIViewExtension.swift */; };
+		BB4C46C0219022D800C6C312 /* UIViewController+DbSemiModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4C46BF219022D800C6C312 /* UIViewController+DbSemiModalViewController.swift */; };
+		BB4C46C32190232A00C6C312 /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4C46C22190232A00C6C312 /* UIViewController+Common.swift */; };
 		BB591D392186EEEA00AAD036 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB591D382186EEEA00AAD036 /* AppDelegate.swift */; };
 		BB591D3B2186EEEA00AAD036 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB591D3A2186EEEA00AAD036 /* ViewController.swift */; };
 		BB591D3E2186EEEA00AAD036 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB591D3C2186EEEA00AAD036 /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 		BB5F2ABC2189A6D100945136 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F2ABA2189A6D000945136 /* DropDownCell.swift */; };
 		BB5F2ABD2189A6D100945136 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5F2ABB2189A6D100945136 /* DropDownCell.xib */; };
 		BB958448218B7BB900B6BC52 /* DbSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB958447218B7BB900B6BC52 /* DbSheetView.swift */; };
+		BBD5DBF02190646F00960424 /* SemiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5DBEE2190646F00960424 /* SemiViewController.swift */; };
+		BBD5DBF12190646F00960424 /* SemiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD5DBEF2190646F00960424 /* SemiViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,8 @@
 		BB235DC5218C00E2007979AF /* ObjeCBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjeCBridgingHeader.h; sourceTree = "<group>"; };
 		BB235DC9218C02A9007979AF /* FormatCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatCalendarCell.swift; sourceTree = "<group>"; };
 		BB235DDF218C5668007979AF /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		BB4C46BF219022D800C6C312 /* UIViewController+DbSemiModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DbSemiModalViewController.swift"; sourceTree = "<group>"; };
+		BB4C46C22190232A00C6C312 /* UIViewController+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		BB591D352186EEEA00AAD036 /* DbDropDownView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DbDropDownView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB591D382186EEEA00AAD036 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB591D3A2186EEEA00AAD036 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +63,8 @@
 		BB5F2ABA2189A6D000945136 /* DropDownCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		BB5F2ABB2189A6D100945136 /* DropDownCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropDownCell.xib; sourceTree = "<group>"; };
 		BB958447218B7BB900B6BC52 /* DbSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbSheetView.swift; sourceTree = "<group>"; };
+		BBD5DBEE2190646F00960424 /* SemiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemiViewController.swift; sourceTree = "<group>"; };
+		BBD5DBEF2190646F00960424 /* SemiViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SemiViewController.xib; sourceTree = "<group>"; };
 		DC87A5707FBF2B6C60F3FB81 /* Pods-DbDropDownView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DbDropDownView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DbDropDownView/Pods-DbDropDownView.debug.xcconfig"; sourceTree = "<group>"; };
 		F7B7BB3C26352975943FAADA /* Pods_DbDropDownView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DbDropDownView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -109,6 +117,15 @@
 			path = BaseView;
 			sourceTree = "<group>";
 		};
+		BB4C46C1219022FC00C6C312 /* DbSemiModalViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BB4C46C22190232A00C6C312 /* UIViewController+Common.swift */,
+				BB4C46BF219022D800C6C312 /* UIViewController+DbSemiModalViewController.swift */,
+			);
+			path = DbSemiModalViewController;
+			sourceTree = "<group>";
+		};
 		BB591D2C2186EEEA00AAD036 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +147,7 @@
 		BB591D372186EEEA00AAD036 /* DbDropDownView */ = {
 			isa = PBXGroup;
 			children = (
+				BB4C46C1219022FC00C6C312 /* DbSemiModalViewController */,
 				BB5F2AB92189A63600945136 /* CustomDropDownCell */,
 				BB591D4A2186F08000AAD036 /* DbDropDownView */,
 				BB591D4E2186F08000AAD036 /* DemoCode */,
@@ -141,6 +159,8 @@
 				BB235DC5218C00E2007979AF /* ObjeCBridgingHeader.h */,
 				BB591D442186EEEC00AAD036 /* Info.plist */,
 				BB235DC1218BFCD0007979AF /* CalendarView */,
+				BBD5DBEE2190646F00960424 /* SemiViewController.swift */,
+				BBD5DBEF2190646F00960424 /* SemiViewController.xib */,
 			);
 			path = DbDropDownView;
 			sourceTree = "<group>";
@@ -212,7 +232,7 @@
 				TargetAttributes = {
 					BB591D342186EEEA00AAD036 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -245,6 +265,7 @@
 				BB591D3E2186EEEA00AAD036 /* Main.storyboard in Resources */,
 				BB5F2ABD2189A6D100945136 /* DropDownCell.xib in Resources */,
 				BB5F2AB82189A62C00945136 /* CustomDropDownCell.xib in Resources */,
+				BBD5DBF12190646F00960424 /* SemiViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +283,7 @@
 				"${BUILT_PRODUCTS_DIR}/DKChainableAnimationKit/DKChainableAnimationKit.framework",
 				"${BUILT_PRODUCTS_DIR}/DateTimePicker/DateTimePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/SemiModalViewController/SemiModalViewController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -269,6 +291,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DKChainableAnimationKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateTimePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SemiModalViewController.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -305,11 +328,14 @@
 				BB591D592186F08100AAD036 /* DbDropDownCommon.swift in Sources */,
 				BB591D562186F08100AAD036 /* UIDropDown.swift in Sources */,
 				BB591D3B2186EEEA00AAD036 /* ViewController.swift in Sources */,
+				BB4C46C32190232A00C6C312 /* UIViewController+Common.swift in Sources */,
 				BB591D572186F08100AAD036 /* DbDropDown.swift in Sources */,
 				BB591D552186F08100AAD036 /* DbSelectBox.swift in Sources */,
+				BBD5DBF02190646F00960424 /* SemiViewController.swift in Sources */,
 				BB235DC0218BFCC7007979AF /* CalendarView.swift in Sources */,
 				BB591D542186F08100AAD036 /* DbDropDownView.swift in Sources */,
 				BB591D532186F08100AAD036 /* DbDropDownViewCommon.swift in Sources */,
+				BB4C46C0219022D800C6C312 /* UIViewController+DbSemiModalViewController.swift in Sources */,
 				BB5F2AB72189A62C00945136 /* CustomDropDownCell.swift in Sources */,
 				BB235DCA218C02A9007979AF /* FormatCalendarCell.swift in Sources */,
 				BB591D392186EEEA00AAD036 /* AppDelegate.swift in Sources */,

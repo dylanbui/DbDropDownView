@@ -25,4 +25,6 @@ target 'DbDropDownView' do
     # 2 thang nay giong nhau co the dung thay the https://github.com/jhurray/JHChainableAnimations
     pod 'DKChainableAnimationKit', '2.0.1'
     
+    pod 'SemiModalViewController', '1.0.0'
+    
 end

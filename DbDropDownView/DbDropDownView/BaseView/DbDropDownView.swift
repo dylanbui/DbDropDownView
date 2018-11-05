@@ -99,7 +99,7 @@ public class DbDropDownView: UITableView
         // -- Touch background --
         self.dismissableView = UIView(frame: UIScreen.main.bounds)
         // 1. create a gesture recognizer (tap gesture)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(touchBackground(sender:)))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(touchToBackground(sender:)))
         // 2. add the gesture recognizer to a view
         self.dismissableView.addGestureRecognizer(tapGesture)
     }
@@ -127,7 +127,7 @@ public class DbDropDownView: UITableView
         self.reloadData()
     }
     
-    @objc fileprivate func touchBackground(sender: UITapGestureRecognizer)
+    @objc fileprivate func touchToBackground(sender: UITapGestureRecognizer)
     {
         hideDropDown()
     }
