@@ -206,8 +206,8 @@ class ViewController: UIViewController
         header_2.textColor = UIColor.blue
         header_2.backgroundColor = UIColor.green//.withAlphaComponent(1.0)
         
-//        let view = UIView(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 100))
-//        view.addSubview(header_2)
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 100))
+        view.addSubview(header_2)
         
         let options: [DbSemiModalOption: Any] = [DbSemiModalOption.pushParentBack: true]
         self.presentSemiView(header_2, options: options)
