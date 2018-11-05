@@ -156,7 +156,18 @@ class ViewController: UIViewController
     
     @IBAction func btnSheet_Click(_ sender: AnyObject)
     {
-        sheet.show()
+        // sheet.show()
+        
+        let header_2 = UILabel(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 100))
+        header_2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        header_2.textAlignment = .center
+        header_2.font = UIFont.systemFont(ofSize: 14)
+        header_2.text = "TP Hồ Chí Minh"
+        header_2.textColor = UIColor.blue
+        header_2.backgroundColor = UIColor.green.withAlphaComponent(0.5)
+        
+        header_2.displaySameSheetView()
+        
     }
 
     

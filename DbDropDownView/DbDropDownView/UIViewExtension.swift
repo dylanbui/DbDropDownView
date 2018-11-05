@@ -11,6 +11,11 @@ import Foundation
 
 extension UIView
 {
+    @objc fileprivate func touchBackground(sender: UITapGestureRecognizer)
+    {
+        hideSameSheetView()
+    }
+    
     func displaySameSheetView() -> Void
     {
         // -- Width full screen --
@@ -33,6 +38,13 @@ extension UIView
         }
         vclRoot.view.addSubview(self)
         
+        
+        // 1. create a gesture recognizer (tap gesture)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(touchBackground(sender:)))
+        // 2. add the gesture recognizer to a view
+        vclRoot.view.addGestureRecognizer(tapGesture)
+
+        
         // -- Animation display --
         
         UIView.animate(withDuration: 0.9,
@@ -45,7 +57,8 @@ extension UIView
                         // -- Default .TopToBottom --
                         var valY = vclRoot.view.frame.maxY + tableYOffset
                         if true { //self.displayDirection == .BottomToTop {
-                            valY = vclRoot.view.frame.minY - (tableListHeight+tableYOffset)
+//                            valY = vclRoot.view.frame.minY - (tableListHeight+tableYOffset)
+                            valY = vclRoot.view.frame.maxY - (tableListHeight+tableYOffset)
                         }
                         
                         self.frame = CGRect(x: vclRoot.view.frame.minX,
@@ -72,7 +85,7 @@ extension UIView
                         // -- Default .TopToBottom --
                         var valY = self.frame.minY
                         if true { //self.displayDirection == .BottomToTop {
-                            valY = self.frame.minY + self.frame.size.height
+                            valY = self.frame.maxY + self.frame.size.height
                         }
                         
                         self.frame = CGRect(x: self.frame.minX,

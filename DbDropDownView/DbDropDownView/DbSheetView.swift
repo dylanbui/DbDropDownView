@@ -31,12 +31,12 @@ class DbSheetView: UIControl
     public convenience init(withContentView: UIView, andHeight: CGFloat)
     {
         self.init(frame: .zero)
+        self.contentView = withContentView
         var frame = self.contentView.frame
         frame.size = CGSize(width: UIScreen.main.bounds.size.width, height: andHeight)
         self.contentView.frame = frame
 //        self.contentView.frame.size.height
 //        UIScreen.main.bounds.size.width
-        self.contentView = withContentView
         setupDropDown()
         setup()
     }
