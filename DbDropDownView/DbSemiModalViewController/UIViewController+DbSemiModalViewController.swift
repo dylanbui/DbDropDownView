@@ -29,6 +29,7 @@ public enum DbSemiModalOption: String {
     case parentAlpha
     case shadowOpacity
     case contentYOffset
+    case leftRightPadding
     case transitionStyle
     case disableCancel
     case backgroundView
@@ -37,16 +38,29 @@ public enum DbSemiModalOption: String {
 public enum DbSemiModalTransitionStyle: String {
     case slideUp
     case slideDown
-    case fadeInOut
+    case slideCenter
+    case fadeInOutCenter
 }
 
-extension UIViewController {
+extension UIViewController
+{
+    public func db_presentSemiSheetView(_ view: UIView, completion: (() -> Void)? = nil) {
+        let options: [DbSemiModalOption: Any] = [
+            .transitionStyle: DbSemiModalTransitionStyle.slideUp,
+            .contentYOffset : 10,
+            .leftRightPadding : 10,
+        ]
+
+        db_presentSemiView(view, options: options) {
+            completion?()
+        }
+    }
     
-    public func presentSemiViewController(_ vc: UIViewController,
+    public func db_presentSemiViewController(_ vc: UIViewController,
                                           options: [DbSemiModalOption: Any]? = nil,
                                           completion: (() -> Void)? = nil,
                                           dismissBlock: (() -> Void)? = nil) {
-        registerOptions(options)
+        db_registerOptions(options)
         let targetParentVC = parentTargetViewController()
         
         targetParentVC.addChildViewController(vc)
@@ -55,7 +69,7 @@ extension UIViewController {
         objc_setAssociatedObject(targetParentVC, &dbSemiModalViewController, vc, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         objc_setAssociatedObject(targetParentVC, &dbSemiModalDismissBlock, DbClosureWrapper(closure: dismissBlock), .OBJC_ASSOCIATION_COPY_NONATOMIC)
         
-        presentSemiView(vc.view, options: options) {
+        db_presentSemiView(vc.view, options: options) {
             vc.didMove(toParentViewController: targetParentVC)
             vc.endAppearanceTransition()
             
@@ -63,10 +77,13 @@ extension UIViewController {
         }
     }
     
-    public func presentSemiView(_ view: UIView, options: [DbSemiModalOption: Any]? = nil, completion: (() -> Void)? = nil) {
-        registerOptions(options)
+    public func db_presentSemiView(_ view: UIView, options: [DbSemiModalOption: Any]? = nil, completion: (() -> Void)? = nil)
+    {
+        db_registerOptions(options)
         let targetView = parentTargetView()
         let targetParentVC = parentTargetViewController()
+        let transitionStyle = db_optionForKey(.transitionStyle) as! DbSemiModalTransitionStyle
+        var duration = db_optionForKey(.animationDuration) as! TimeInterval
         
         if targetView.subviews.contains(view) {
             return
@@ -80,23 +97,42 @@ extension UIViewController {
                                                object: nil)
         
         let semiViewHeight = view.frame.size.height
-        let contentYOffset: CGFloat = CGFloat(optionForKey(.contentYOffset) as! Double)
-        let semiViewFrame = CGRect(x: 0, y: targetView.height - semiViewHeight - contentYOffset,
-                                   width: targetView.width, height: semiViewHeight)
+        let contentYOffset: CGFloat = CGFloat(db_optionForKey(.contentYOffset) as! Double)
+        let leftRightPadding: CGFloat = CGFloat(db_optionForKey(.leftRightPadding) as! Double)
+        // -- Older --
+//        var semiViewFrame = CGRect(x: 0, y: targetView.height - semiViewHeight - contentYOffset,
+//                                   width: targetView.width, height: semiViewHeight)
+        var semiViewFrame = CGRect.zero
+        
+        if transitionStyle == .slideUp {
+            semiViewFrame = CGRect(x: leftRightPadding, y: targetView.height - semiViewHeight - contentYOffset,
+                                   width: targetView.width - (leftRightPadding*2), height: semiViewHeight)
+        } else if transitionStyle == .slideDown {
+            semiViewFrame = CGRect(x: leftRightPadding, y: contentYOffset,
+                                   width: targetView.width - (leftRightPadding*2), height: semiViewHeight)
+        } else if transitionStyle == .slideCenter || transitionStyle == .fadeInOutCenter{
+            // center
+            semiViewFrame = CGRect(x: leftRightPadding, y: (targetView.height - semiViewHeight)/2 + contentYOffset,
+                                   width: targetView.width - (leftRightPadding*2), height: semiViewHeight)
+        }
+        
+        // -- Debug --
+        // print("semiViewFrame = \(String(describing: semiViewFrame))")
         
         let overlay = overlayView()
         targetView.addSubview(overlay)
         
         let screenshot = addOrUpdateParentScreenshotInView(overlay)
-        
-        var duration = optionForKey(.animationDuration) as! TimeInterval
         UIView.animate(withDuration: duration, animations: {
-            screenshot.alpha = CGFloat(self.optionForKey(.parentAlpha) as! Double)
+            screenshot.alpha = CGFloat(self.db_optionForKey(.parentAlpha) as! Double)
         })
         
-        let transitionStyle = optionForKey(.transitionStyle) as! DbSemiModalTransitionStyle
         if transitionStyle == .slideUp {
             view.frame = semiViewFrame.offsetBy(dx: 0, dy: +semiViewHeight)
+        } else if transitionStyle == .slideDown {
+            view.frame = semiViewFrame.offsetBy(dx: 0, dy: -semiViewHeight)
+        } else if transitionStyle == .slideCenter {
+            view.frame = semiViewFrame.offsetBy(dx: 0, dy: (targetView.height-semiViewHeight)/2 + (semiViewHeight/2))
         } else {
             view.frame = semiViewFrame
         }
@@ -110,20 +146,27 @@ extension UIViewController {
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: -2)
         view.layer.shadowRadius = 5
-        view.layer.shadowOpacity = Float(optionForKey(.shadowOpacity) as! Double)
+        view.layer.shadowOpacity = Float(db_optionForKey(.shadowOpacity) as! Double)
         view.layer.shouldRasterize = true
         view.layer.rasterizationScale = UIScreen.main.scale
-        
-        duration = (transitionStyle == .slideUp || transitionStyle == .slideDown ? 0.9 : duration)
+
+        // -- Process duration --
+        if transitionStyle == .slideUp
+            || transitionStyle == .slideDown
+            || transitionStyle == .slideCenter {
+            duration = 0.9 // Default for slide
+        }
         
         UIView.animate(withDuration: duration,
                        delay: 0,
-                       usingSpringWithDamping: 0.5,
+                       usingSpringWithDamping: 0.4,
                        initialSpringVelocity: 0.1,
                        options: .curveEaseInOut,
                        animations: { () -> Void in
                         
-                        if transitionStyle == .slideUp || transitionStyle == .slideDown {
+                        if transitionStyle == .slideUp
+                            || transitionStyle == .slideDown
+                            || transitionStyle == .slideCenter {
                             view.frame = semiViewFrame
                         }
                         view.alpha = 1
@@ -135,32 +178,23 @@ extension UIViewController {
             }
         })
         
-//        UIView.animate(withDuration: duration, animations: {
-//            if transitionStyle == .slideUp {
-//                view.frame = semiViewFrame
-//            }
-//            view.alpha = 1
-//        }, completion: { finished in
-//            if finished {
-//                NotificationCenter.default.post(name: .dbSemiModalDidShow, object: self)
-//                completion?()
-//            }
-//        })
     }
     
-    @objc public func dismissSemiModalView()
+    // MARK: - Dissmiss function
+    
+    @objc public func db_dismissSemiModalView()
     {
-        dismissSemiModalViewWithCompletion(nil)
+        db_dismissSemiModalViewWithCompletion(nil)
     }
     
-    public func dismissSemiModalViewWithCompletion(_ completion: (() -> Void)?) {
+    public func db_dismissSemiModalViewWithCompletion(_ completion: (() -> Void)?) {
         let targetVC = parentTargetViewController()
         
         guard let targetView = targetVC.view
             , let modal = targetView.viewWithTag(dbSemiModalModalViewTag)
             , let overlay = targetView.viewWithTag(dbSemiModalOverlayTag)
-            , let transitionStyle = optionForKey(.transitionStyle) as? DbSemiModalTransitionStyle
-            , let duration = optionForKey(.animationDuration) as? TimeInterval else { return }
+            , let transitionStyle = db_optionForKey(.transitionStyle) as? DbSemiModalTransitionStyle
+            , let duration = db_optionForKey(.animationDuration) as? TimeInterval else { return }
         
         
         let vc = objc_getAssociatedObject(targetVC, &dbSemiModalViewController) as? UIViewController
@@ -169,11 +203,18 @@ extension UIViewController {
         vc?.willMove(toParentViewController: nil)
         vc?.beginAppearanceTransition(false, animated: true)
         
+        // -- Padding --
+        let leftRightPadding:CGFloat = CGFloat(db_optionForKey(.leftRightPadding) as! Double)
+        
         UIView.animate(withDuration: duration, animations: {
             if transitionStyle == .slideUp {
-                let originX: CGFloat = 0.0
+                let originX: CGFloat = leftRightPadding
                 modal.frame = CGRect(x: originX, y: targetView.height, width: modal.width, height: modal.height)
+            } else if transitionStyle == .slideDown || transitionStyle == .slideCenter {
+                let originX: CGFloat = leftRightPadding
+                modal.frame = CGRect(x: originX, y: -modal.height, width: modal.width, height: modal.height)
             }
+
             modal.alpha = 0.0
             overlay.alpha = 0.0
         }, completion: { finished in
@@ -204,10 +245,12 @@ extension UIViewController {
         
     }
     
+    // MARK: - Private function
+    
     fileprivate func parentTargetViewController() -> UIViewController {
         var viewController: UIViewController = self
         
-        if optionForKey(.traverseParentHierarchy) as! Bool {
+        if db_optionForKey(.traverseParentHierarchy) as! Bool {
             while viewController.parent != nil {
                 viewController = viewController.parent!
             }
@@ -223,7 +266,7 @@ extension UIViewController {
     @objc fileprivate func interfaceOrientationDidChange(_ notification: Notification) {
         guard let overlay = parentTargetView().viewWithTag(dbSemiModalOverlayTag) else { return }
         let view = addOrUpdateParentScreenshotInView(overlay)
-        view.alpha = CGFloat(self.optionForKey(.parentAlpha) as! Double)
+        view.alpha = CGFloat(self.db_optionForKey(.parentAlpha) as! Double)
         
     }
     
@@ -252,7 +295,7 @@ extension UIViewController {
     fileprivate func overlayView() -> UIView
     {
         var overlay: UIView
-        if let backgroundView = optionForKey(.backgroundView) as? UIView {
+        if let backgroundView = db_optionForKey(.backgroundView) as? UIView {
             overlay = backgroundView
         } else {
             overlay = UIView()
@@ -264,8 +307,8 @@ extension UIViewController {
         overlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         overlay.tag = dbSemiModalOverlayTag
         
-        if optionForKey(.disableCancel) as! Bool {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissSemiModalView))
+        if db_optionForKey(.disableCancel) as! Bool {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(db_dismissSemiModalView))
 //            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(touchOverlayBackground(sender:)))
             overlay.addGestureRecognizer(tapGesture)
         }

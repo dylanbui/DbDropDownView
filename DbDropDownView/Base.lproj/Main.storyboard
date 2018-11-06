@@ -69,19 +69,35 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YqF-Bv-PpK">
-                                <rect key="frame" x="52" y="501" width="87" height="30"/>
+                                <rect key="frame" x="37" y="501" width="87" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Semi 1"/>
+                                <state key="normal" title="Up"/>
                                 <connections>
-                                    <action selector="btnSemi_1_Click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rdE-q7-UqG"/>
+                                    <action selector="btnUp_Click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Www-4J-EJ5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTN-Vn-tun">
+                                <rect key="frame" x="144" y="501" width="87" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Down"/>
+                                <connections>
+                                    <action selector="btnDown_Click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DR5-Pv-bjj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRG-eh-wW1">
-                                <rect key="frame" x="219" y="501" width="87" height="30"/>
+                                <rect key="frame" x="250" y="501" width="87" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Semi 2"/>
+                                <state key="normal" title="Center"/>
                                 <connections>
-                                    <action selector="btnSemi_2_Click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vys-y9-7XM"/>
+                                    <action selector="btnCenter_Click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IvL-dE-M61"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eiu-Lc-Mim">
+                                <rect key="frame" x="144" y="545" width="87" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sheet"/>
+                                <connections>
+                                    <action selector="btnSemiSheet_Click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3i5-zo-K6O"/>
                                 </connections>
                             </button>
                         </subviews>

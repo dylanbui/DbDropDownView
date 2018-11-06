@@ -9,7 +9,7 @@ class SemiViewController: UIViewController {
     }
     
     @IBAction func dismiss(_ sender: AnyObject) {
-        dismissSemiModalView()
+        db_dismissSemiModalView()
     }
     
 }

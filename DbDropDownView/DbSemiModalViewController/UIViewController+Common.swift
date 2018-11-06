@@ -31,20 +31,21 @@ private var DbCustomOptions: Void?
 
 extension UIViewController {
     
-    var defaultOptions: [DbSemiModalOption: Any] {
+    var db_defaultOptions: [DbSemiModalOption: Any] {
         return [
             .traverseParentHierarchy : true,
-            .animationDuration       : 0.5, // No effect if transitionStyle is : slideUp, slideDown
+            .animationDuration       : 0.3, // No effect if transitionStyle is : slideUp, slideDown
             .parentAlpha             : 0.3,
             .shadowOpacity           : 0.0, // Shadow for view content
-            .contentYOffset          : 5.0, // Y Offect
-            .transitionStyle         : DbSemiModalTransitionStyle.slideUp,
-//            .transitionStyle         : DbSemiModalTransitionStyle.fadeInOut,
+            .contentYOffset          : 0.0, // Y Offect
+            .leftRightPadding        : 0.0, // padding for left and right
+//            .transitionStyle         : DbSemiModalTransitionStyle.slideUp,
+            .transitionStyle         : DbSemiModalTransitionStyle.fadeInOutCenter,
             .disableCancel           : true
         ]
     }
     
-    func registerOptions(_ options: [DbSemiModalOption: Any]?) {
+    func db_registerOptions(_ options: [DbSemiModalOption: Any]?) {
         // options always save in parent viewController
         var targetVC: UIViewController = self
         while targetVC.parent != nil {
@@ -54,24 +55,24 @@ extension UIViewController {
         objc_setAssociatedObject(targetVC, &DbCustomOptions, options, .OBJC_ASSOCIATION_RETAIN)
     }
     
-    func options() -> [DbSemiModalOption: Any] {
+    func db_options() -> [DbSemiModalOption: Any] {
         var targetVC: UIViewController = self
         while targetVC.parent != nil {
             targetVC = targetVC.parent!
         }
         
         if let options = objc_getAssociatedObject(targetVC, &DbCustomOptions) as? [DbSemiModalOption: Any] {
-            var defaultOptions: [DbSemiModalOption: Any] = self.defaultOptions
+            var defaultOptions: [DbSemiModalOption: Any] = self.db_defaultOptions
             defaultOptions.merge(options) { (_, new) in new }
             
             return defaultOptions
         } else {
-            return defaultOptions
+            return db_defaultOptions
         }
     }
     
-    func optionForKey(_ optionKey: DbSemiModalOption) -> Any? {
-        let options = self.options()
+    func db_optionForKey(_ optionKey: DbSemiModalOption) -> Any? {
+        let options = self.db_options()
         let value = options[optionKey]
         
         let isValidType = value is Bool ||
@@ -82,7 +83,7 @@ extension UIViewController {
         if isValidType {
             return value
         } else {
-            return defaultOptions[optionKey]
+            return db_defaultOptions[optionKey]
         }
     }
     
