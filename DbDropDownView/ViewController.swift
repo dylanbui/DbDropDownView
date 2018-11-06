@@ -280,12 +280,20 @@ class ViewController: UIViewController
         
         let view = UIView(frame: header_2.frame)
         view.backgroundColor = UIColor.blue
+        
+        // -- Add background view --
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        // view.addSubview(blurEffectView)
 
         let options: [DbSemiModalOption: Any] = [
-//            DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.slideCenter,
-            DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.fadeInOutCenter,
+            DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.slideCenter,
+//            DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.fadeInOutCenter,
             DbSemiModalOption.animationDuration: 0.3,
-            .contentYOffset : -50
+            .contentYOffset : -50,
+            .backgroundView : blurEffectView
         ]
 
         self.db_presentSemiView(view, options: options)

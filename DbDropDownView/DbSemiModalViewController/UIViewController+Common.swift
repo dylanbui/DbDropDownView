@@ -9,85 +9,84 @@
 import Foundation
 import UIKit
 
-class DbClosureWrapper: NSObject, NSCopying {
-    var closure: (() -> Void)?
-    
-    convenience init(closure: (() -> Void)?) {
-        self.init()
-        self.closure = closure
-    }
-    
-    func copy(with zone: NSZone?) -> Any {
-        let wrapper: DbClosureWrapper = DbClosureWrapper()
-        
-        wrapper.closure = self.closure
-        
-        return wrapper;
-    }
-    
-}
-
-private var DbCustomOptions: Void?
-
-extension UIViewController {
-    
-    var db_defaultOptions: [DbSemiModalOption: Any] {
-        return [
-            .traverseParentHierarchy : true,
-            .animationDuration       : 0.3, // No effect if transitionStyle is : slideUp, slideDown
-            .parentAlpha             : 0.3,
-            .shadowOpacity           : 0.0, // Shadow for view content
-            .contentYOffset          : 0.0, // Y Offect
-            .leftRightPadding        : 0.0, // padding for left and right
-//            .transitionStyle         : DbSemiModalTransitionStyle.slideUp,
-            .transitionStyle         : DbSemiModalTransitionStyle.fadeInOutCenter,
-            .disableCancel           : true
-        ]
-    }
-    
-    func db_registerOptions(_ options: [DbSemiModalOption: Any]?) {
-        // options always save in parent viewController
-        var targetVC: UIViewController = self
-        while targetVC.parent != nil {
-            targetVC = targetVC.parent!
-        }
-        
-        objc_setAssociatedObject(targetVC, &DbCustomOptions, options, .OBJC_ASSOCIATION_RETAIN)
-    }
-    
-    func db_options() -> [DbSemiModalOption: Any] {
-        var targetVC: UIViewController = self
-        while targetVC.parent != nil {
-            targetVC = targetVC.parent!
-        }
-        
-        if let options = objc_getAssociatedObject(targetVC, &DbCustomOptions) as? [DbSemiModalOption: Any] {
-            var defaultOptions: [DbSemiModalOption: Any] = self.db_defaultOptions
-            defaultOptions.merge(options) { (_, new) in new }
-            
-            return defaultOptions
-        } else {
-            return db_defaultOptions
-        }
-    }
-    
-    func db_optionForKey(_ optionKey: DbSemiModalOption) -> Any? {
-        let options = self.db_options()
-        let value = options[optionKey]
-        
-        let isValidType = value is Bool ||
-            value is Double ||
-            value is DbSemiModalTransitionStyle ||
-            value is UIView
-        
-        if isValidType {
-            return value
-        } else {
-            return db_defaultOptions[optionKey]
-        }
-    }
-    
-}
+//class DbClosureWrapper: NSObject, NSCopying {
+//    var closure: (() -> Void)?
+//
+//    convenience init(closure: (() -> Void)?) {
+//        self.init()
+//        self.closure = closure
+//    }
+//
+//    func copy(with zone: NSZone?) -> Any {
+//        let wrapper: DbClosureWrapper = DbClosureWrapper()
+//
+//        wrapper.closure = self.closure
+//
+//        return wrapper;
+//    }
+//
+//}
+//
+//private var DbCustomOptions: Void?
+//
+//extension UIViewController {
+//
+//    var db_defaultOptions: [DbSemiModalOption: Any] {
+//        return [
+//            .traverseParentHierarchy : true,
+//            .animationDuration       : 0.3, // No effect if transitionStyle is : slideUp, slideDown, slideCenter. Only for overlay
+//            .parentAlpha             : 0.3, // Effect alpha for overlay
+//            .shadowOpacity           : 0.0, // Shadow for view content
+//            .contentYOffset          : 0.0, // Y Offect
+//            .leftRightPadding        : 0.0, // padding for left and right
+//            .transitionStyle         : DbSemiModalTransitionStyle.fadeInOutCenter,
+//            .disableCancel           : true
+//        ]
+//    }
+//
+//    func db_registerOptions(_ options: [DbSemiModalOption: Any]?) {
+//        // options always save in parent viewController
+//        var targetVC: UIViewController = self
+//        while targetVC.parent != nil {
+//            targetVC = targetVC.parent!
+//        }
+//
+//        objc_setAssociatedObject(targetVC, &DbCustomOptions, options, .OBJC_ASSOCIATION_RETAIN)
+//    }
+//
+//    func db_options() -> [DbSemiModalOption: Any] {
+//        var targetVC: UIViewController = self
+//        while targetVC.parent != nil {
+//            targetVC = targetVC.parent!
+//        }
+//
+//        if let options = objc_getAssociatedObject(targetVC, &DbCustomOptions) as? [DbSemiModalOption: Any] {
+//            var defaultOptions: [DbSemiModalOption: Any] = self.db_defaultOptions
+//            defaultOptions.merge(options) { (_, new) in new }
+//
+//            return defaultOptions
+//        } else {
+//            return db_defaultOptions
+//        }
+//    }
+//
+//    func db_optionForKey(_ optionKey: DbSemiModalOption) -> Any? {
+//        let options = self.db_options()
+//        let value = options[optionKey]
+//
+//        let isValidType = value is Bool ||
+//            value is Double ||
+//            value is DbSemiModalTransitionStyle ||
+//            value is UIView
+//
+//        if isValidType {
+//            return value
+//        } else {
+//            return db_defaultOptions[optionKey]
+//        }
+//    }
+//
+//}
 
 //import QuartzCore
 //
@@ -139,42 +138,42 @@ extension UIViewController {
 
 
 
-extension UIView {
-    
-    var width: CGFloat {
-        get {
-            return frame.size.width
-        }
-        set {
-            frame = CGRect(x: x, y: y, width: newValue, height: height)
-        }
-    }
-    
-    var height: CGFloat {
-        get {
-            return frame.size.height
-        }
-        set {
-            frame = CGRect(x: x, y: y, width: width, height: newValue)
-        }
-    }
-    
-    var x: CGFloat {
-        get {
-            return frame.origin.x
-        }
-        set {
-            frame = CGRect(x: newValue, y: y, width: width, height: height)
-        }
-    }
-    
-    var y: CGFloat {
-        get {
-            return frame.origin.y
-        }
-        set {
-            frame = CGRect(x: x, y: newValue, width: width, height: height)
-        }
-    }
-    
-}
+//extension UIView {
+//    
+//    var width: CGFloat {
+//        get {
+//            return frame.size.width
+//        }
+//        set {
+//            frame = CGRect(x: x, y: y, width: newValue, height: height)
+//        }
+//    }
+//    
+//    var height: CGFloat {
+//        get {
+//            return frame.size.height
+//        }
+//        set {
+//            frame = CGRect(x: x, y: y, width: width, height: newValue)
+//        }
+//    }
+//    
+//    var x: CGFloat {
+//        get {
+//            return frame.origin.x
+//        }
+//        set {
+//            frame = CGRect(x: newValue, y: y, width: width, height: height)
+//        }
+//    }
+//    
+//    var y: CGFloat {
+//        get {
+//            return frame.origin.y
+//        }
+//        set {
+//            frame = CGRect(x: x, y: newValue, width: width, height: height)
+//        }
+//    }
+//    
+//}
