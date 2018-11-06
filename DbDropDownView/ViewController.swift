@@ -206,12 +206,25 @@ class ViewController: UIViewController
         header_2.textColor = UIColor.blue
         header_2.backgroundColor = UIColor.green//.withAlphaComponent(1.0)
         
-//        let view = UIView(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 100))
-//        view.addSubview(header_2)
+        let btn = UIButton.init(type: .custom)
+        btn.frame = CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 100)
+        btn.titleLabel?.text = "Click vao day"
+        btn.titleLabel?.tintColor = UIColor.black
+        btn.backgroundColor = UIColor.cyan
         
-        let options: [DbSemiModalOption: Any] = [DbSemiModalOption.pushParentBack: true]
-        self.presentSemiView(header_2, options: options)
-//        self.presentSemiView(view)
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 100))
+        // header_2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        view.backgroundColor = UIColor.green//.withAlphaComponent(1.0)
+        
+        header_2.frame = view.frame
+        print("header_2.frame = \(String(describing: header_2.frame))")
+        view.addSubview(header_2)
+        
+//        let options: [DbSemiModalOption: Any] = [DbSemiModalOption.pushParentBack: true]
+//        self.presentSemiView(view, options: options)
+        // self.presentSemiView(header_2, options: options)
+        self.presentSemiView(view)
         
     }
 

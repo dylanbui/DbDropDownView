@@ -34,12 +34,12 @@ extension UIViewController {
     var defaultOptions: [DbSemiModalOption: Any] {
         return [
             .traverseParentHierarchy : true,
-            .pushParentBack          : false,
-            .animationDuration       : 0.5,
-            .parentAlpha             : 0.5,
-            .parentScale             : 0.8,
-            .shadowOpacity           : 0.5,
+            .animationDuration       : 0.5, // No effect if transitionStyle is : slideUp, slideDown
+            .parentAlpha             : 0.3,
+            .shadowOpacity           : 0.0, // Shadow for view content
+            .contentYOffset          : 5.0, // Y Offect
             .transitionStyle         : DbSemiModalTransitionStyle.slideUp,
+//            .transitionStyle         : DbSemiModalTransitionStyle.fadeInOut,
             .disableCancel           : true
         ]
     }
@@ -88,53 +88,53 @@ extension UIViewController {
     
 }
 
-import QuartzCore
-
-public class DbPushBackAnimationGroup: CAAnimationGroup {
-    public convenience init(forward: Bool, viewHeight: CGFloat, options: [DbSemiModalOption: Any]) {
-        self.init()
-        
-        var id1 = CATransform3DIdentity
-        id1.m34 = 1.0 / -900
-        id1 = CATransform3DScale(id1, 0.95, 0.95, 1)
-        
-//        let angleFactor: CGFloat = UIDevice.isPad() ? 7.5 : 15.0
-        let angleFactor: CGFloat = 15.0
-        id1 = CATransform3DRotate(id1, angleFactor * CGFloat(Double.pi) / 180.0, 1, 0, 0)
-        
-        var id2 = CATransform3DIdentity
-        id2.m34 = id1.m34
-        
-        let scale = CGFloat(options[.parentScale] as! Double)
-//        let tzFactor: CGFloat = UIDevice.isPad() ? -0.04 : -0.08
-        let tzFactor: CGFloat = -0.08
-        
-        id2 = CATransform3DTranslate(id2, 0, viewHeight * tzFactor, 0)
-        id2 = CATransform3DScale(id2, scale, scale, 1)
-        
-        let animation = CABasicAnimation(keyPath: "transform")
-        animation.toValue = NSValue(caTransform3D: id1)
-        
-        let animationDuration = options[.animationDuration] as! Double
-        animation.duration = animationDuration / 2
-        animation.fillMode = kCAFillModeForwards //CAMediaTimingFillMode().forwards
-        animation.isRemovedOnCompletion = false
-//        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        
-        let animation2 = CABasicAnimation(keyPath: "transform")
-        animation2.toValue = NSValue(caTransform3D: forward ? id2 : CATransform3DIdentity)
-        animation2.beginTime = animation.duration
-        animation2.duration = animation.duration
-        animation2.fillMode = kCAFillModeForwards //CAMediaTimingFillMode.forwards
-        animation2.isRemovedOnCompletion = false
-        
-        fillMode = kCAFillModeForwards //CAMediaTimingFillMode.forwards
-        isRemovedOnCompletion = false
-        duration = animation.duration * 2
-        animations = [animation, animation2]
-    }
-}
+//import QuartzCore
+//
+//public class DbPushBackAnimationGroup: CAAnimationGroup {
+//    public convenience init(forward: Bool, viewHeight: CGFloat, options: [DbSemiModalOption: Any]) {
+//        self.init()
+//
+//        var id1 = CATransform3DIdentity
+//        id1.m34 = 1.0 / -900
+//        id1 = CATransform3DScale(id1, 0.95, 0.95, 1)
+//
+////        let angleFactor: CGFloat = UIDevice.isPad() ? 7.5 : 15.0
+//        let angleFactor: CGFloat = 15.0
+//        id1 = CATransform3DRotate(id1, angleFactor * CGFloat(Double.pi) / 180.0, 1, 0, 0)
+//
+//        var id2 = CATransform3DIdentity
+//        id2.m34 = id1.m34
+//
+//        let scale = CGFloat(options[.parentScale] as! Double)
+////        let tzFactor: CGFloat = UIDevice.isPad() ? -0.04 : -0.08
+//        let tzFactor: CGFloat = -0.08
+//
+//        id2 = CATransform3DTranslate(id2, 0, viewHeight * tzFactor, 0)
+//        id2 = CATransform3DScale(id2, scale, scale, 1)
+//
+//        let animation = CABasicAnimation(keyPath: "transform")
+//        animation.toValue = NSValue(caTransform3D: id1)
+//
+//        let animationDuration = options[.animationDuration] as! Double
+//        animation.duration = animationDuration / 2
+//        animation.fillMode = kCAFillModeForwards //CAMediaTimingFillMode().forwards
+//        animation.isRemovedOnCompletion = false
+////        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+//        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+//
+//        let animation2 = CABasicAnimation(keyPath: "transform")
+//        animation2.toValue = NSValue(caTransform3D: forward ? id2 : CATransform3DIdentity)
+//        animation2.beginTime = animation.duration
+//        animation2.duration = animation.duration
+//        animation2.fillMode = kCAFillModeForwards //CAMediaTimingFillMode.forwards
+//        animation2.isRemovedOnCompletion = false
+//
+//        fillMode = kCAFillModeForwards //CAMediaTimingFillMode.forwards
+//        isRemovedOnCompletion = false
+//        duration = animation.duration * 2
+//        animations = [animation, animation2]
+//    }
+//}
 
 
 
