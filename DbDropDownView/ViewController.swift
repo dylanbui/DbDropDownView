@@ -286,6 +286,7 @@ class ViewController: UIViewController
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.alpha = 1.0
         // view.addSubview(blurEffectView)
 
         let options: [DbSemiModalOption: Any] = [
