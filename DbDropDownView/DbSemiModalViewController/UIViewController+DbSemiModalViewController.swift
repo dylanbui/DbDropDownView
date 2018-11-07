@@ -422,10 +422,10 @@ extension UIViewController
             overlay = backgroundView
         } else {
             overlay = UIView()
+            overlay.backgroundColor = UIColor.black
         }
         
         overlay.frame = parentTargetView().bounds
-        overlay.backgroundColor = UIColor.black
         overlay.isUserInteractionEnabled = true
         overlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         overlay.tag = dbSemiModalOverlayTag
