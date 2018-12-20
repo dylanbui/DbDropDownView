@@ -12,6 +12,8 @@
 		BB235DC3218BFCDC007979AF /* CalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB235DC2218BFCDC007979AF /* CalendarView.xib */; };
 		BB235DCA218C02A9007979AF /* FormatCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB235DC9218C02A9007979AF /* FormatCalendarCell.swift */; };
 		BB235DE0218C5668007979AF /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB235DDF218C5668007979AF /* UIViewExtension.swift */; };
+		BB4341E621CB9787009F6ADE /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4341E421CB9787009F6ADE /* DemoViewController.swift */; };
+		BB4341E721CB9787009F6ADE /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB4341E521CB9787009F6ADE /* DemoViewController.xib */; };
 		BB4C46C0219022D800C6C312 /* UIViewController+DbSemiModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4C46BF219022D800C6C312 /* UIViewController+DbSemiModalViewController.swift */; };
 		BB4C46C32190232A00C6C312 /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4C46C22190232A00C6C312 /* UIViewController+Common.swift */; };
 		BB591D392186EEEA00AAD036 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB591D382186EEEA00AAD036 /* AppDelegate.swift */; };
@@ -42,6 +44,8 @@
 		BB235DC5218C00E2007979AF /* ObjeCBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjeCBridgingHeader.h; sourceTree = "<group>"; };
 		BB235DC9218C02A9007979AF /* FormatCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatCalendarCell.swift; sourceTree = "<group>"; };
 		BB235DDF218C5668007979AF /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		BB4341E421CB9787009F6ADE /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
+		BB4341E521CB9787009F6ADE /* DemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DemoViewController.xib; sourceTree = "<group>"; };
 		BB4C46BF219022D800C6C312 /* UIViewController+DbSemiModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DbSemiModalViewController.swift"; sourceTree = "<group>"; };
 		BB4C46C22190232A00C6C312 /* UIViewController+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		BB591D352186EEEA00AAD036 /* DbDropDownView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DbDropDownView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +156,8 @@
 				BB591D4A2186F08000AAD036 /* DbDropDownView */,
 				BB591D4E2186F08000AAD036 /* DemoCode */,
 				BB591D382186EEEA00AAD036 /* AppDelegate.swift */,
+				BB4341E421CB9787009F6ADE /* DemoViewController.swift */,
+				BB4341E521CB9787009F6ADE /* DemoViewController.xib */,
 				BB591D3A2186EEEA00AAD036 /* ViewController.swift */,
 				BB591D3C2186EEEA00AAD036 /* Main.storyboard */,
 				BB591D3F2186EEEC00AAD036 /* Assets.xcassets */,
@@ -262,6 +268,7 @@
 				BB235DC3218BFCDC007979AF /* CalendarView.xib in Resources */,
 				BB591D432186EEEC00AAD036 /* LaunchScreen.storyboard in Resources */,
 				BB591D402186EEEC00AAD036 /* Assets.xcassets in Resources */,
+				BB4341E721CB9787009F6ADE /* DemoViewController.xib in Resources */,
 				BB591D3E2186EEEA00AAD036 /* Main.storyboard in Resources */,
 				BB5F2ABD2189A6D100945136 /* DropDownCell.xib in Resources */,
 				BB5F2AB82189A62C00945136 /* CustomDropDownCell.xib in Resources */,
@@ -340,6 +347,7 @@
 				BB235DCA218C02A9007979AF /* FormatCalendarCell.swift in Sources */,
 				BB591D392186EEEA00AAD036 /* AppDelegate.swift in Sources */,
 				BB958448218B7BB900B6BC52 /* DbSheetView.swift in Sources */,
+				BB4341E621CB9787009F6ADE /* DemoViewController.swift in Sources */,
 				BB591D582186F08100AAD036 /* SearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

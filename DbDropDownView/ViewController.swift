@@ -29,6 +29,9 @@ class ViewController: UIViewController
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        self.navigationController?.pushViewController(DemoViewController(), animated: true)
+        return
+        
         // -- example 1 --
         self.selectBox = DbSelectBox(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
         self.selectBox.center = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY - 100)

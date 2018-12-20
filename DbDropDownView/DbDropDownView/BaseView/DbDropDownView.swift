@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+fileprivate let rootView = UIApplication.shared.keyWindow?.rootViewController?.view
 
 public class DbDropDownView: UITableView
 {
@@ -192,9 +193,19 @@ public class DbDropDownView: UITableView
         
         privateTableWillAppear()
         
-        guard let parent = self.anchorView else {
+        //guard let parent = self.anchorView else {
+        guard let subAnchorView = self.anchorView else {
             fatalError("AnchorView not found")
         }
+        
+        // let rootView = UIApplication.shared.keyWindow?.rootViewController?.view
+        let frameMatchParent = subAnchorView.superview?.convert(subAnchorView.frame, to: rootView)
+        print("frameMatchParent = \(String(describing: frameMatchParent))")
+        
+        let parent = UIView(frame: frameMatchParent!)
+        parent.tag = 5001
+        parent.backgroundColor = UIColor.red
+        rootView?.addSubview(parent)
         
         self.frame = CGRect(x: parent.frame.minX,
                                  y: parent.frame.minY,
@@ -341,6 +352,9 @@ public class DbDropDownView: UITableView
                 self.dismissableView.removeFromSuperview()
                 self.removeFromSuperview()
                 self.privateTableDidDisappear()
+                
+                // -- Remove temple anchor view --
+                rootView?.viewWithTag(5001)?.removeFromSuperview()
             })
             
         case .Bouncing:
@@ -363,7 +377,11 @@ public class DbDropDownView: UITableView
                 self.dismissableView.removeFromSuperview()
                 // -- Phai tra ve size ban dau truoc khi removeFromSuperview --
                 self.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+                self.removeFromSuperview()
                 self.privateTableDidDisappear()
+                
+                // -- Remove temple anchor view --
+                rootView?.viewWithTag(5001)?.removeFromSuperview()
             })
             
         }
