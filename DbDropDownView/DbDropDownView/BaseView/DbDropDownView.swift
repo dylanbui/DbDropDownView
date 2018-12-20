@@ -204,7 +204,7 @@ public class DbDropDownView: UITableView
         
         let parent = UIView(frame: frameMatchParent!)
         parent.tag = 5001
-        parent.backgroundColor = UIColor.red
+        parent.backgroundColor = UIColor.red // Test color
         rootView?.addSubview(parent)
         
         self.frame = CGRect(x: parent.frame.minX,

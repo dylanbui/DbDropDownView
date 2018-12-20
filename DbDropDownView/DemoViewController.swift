@@ -49,7 +49,8 @@ class DemoViewController: UIViewController
         var theme = DbDropDownViewTheme.testTheme()
         theme.cellHeight = 0 // use auto
         self.listView.theme = theme
-        self.listView.animationType = .Bouncing
+        // self.listView.animationType = .Bouncing
+        self.listView.animationType = .Default
         self.listView.tableListHeight = 160
         
         self.listView.registerCellNib(nib: UINib(nibName: "DropDownCell", bundle: nil),
@@ -214,35 +215,36 @@ class DemoViewController: UIViewController
         ]
         
         self.db_presentSemiView(view, options: options)
+    }
+    
+    @IBAction func btnCenter_Click(_ sender: AnyObject)
+    {
+        let header_2 = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300))
+        header_2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        header_2.textAlignment = .center
+        header_2.font = UIFont.systemFont(ofSize: 14)
+        header_2.text = "btnCenter_Click"
+        header_2.textColor = UIColor.blue
+        header_2.backgroundColor = UIColor.red.withAlphaComponent(0.8)
         
-        //        let header_2 = UILabel(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 100))
-        //        // header_2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
-        //        header_2.textAlignment = .center
-        //        header_2.font = UIFont.systemFont(ofSize: 14)
-        //        header_2.text = "TP Hồ Chí Minh"
-        //        header_2.textColor = UIColor.blue
-        //        header_2.backgroundColor = UIColor.green//.withAlphaComponent(1.0)
-        //
-        //        let btn = UIButton.init(type: .custom)
-        //        btn.frame = CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 100)
-        //        btn.titleLabel?.text = "Click vao day"
-        //        btn.titleLabel?.tintColor = UIColor.black
-        //        btn.backgroundColor = UIColor.cyan
-        //
-        //
-        //        let view = UIView(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 100))
-        //        // header_2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
-        //        view.backgroundColor = UIColor.green//.withAlphaComponent(1.0)
-        //
-        //        header_2.frame = view.frame
-        //        print("header_2.frame = \(String(describing: header_2.frame))")
-        //        view.addSubview(header_2)
-        //
-        ////        let options: [DbSemiModalOption: Any] = [DbSemiModalOption.pushParentBack: true]
-        ////        self.presentSemiView(view, options: options)
-        //        // self.presentSemiView(header_2, options: options)
-        //        self.presentSemiView(view)
+        let view = UIView(frame: header_2.frame)
+        view.backgroundColor = UIColor.blue
         
+        // -- Add custom background view , Bi loi khong su dung duoc --
+//        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = view.bounds
+//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        let options: [DbSemiModalOption: Any] = [
+            DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.slideCenter,
+            // DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.fadeInOutCenter,
+            DbSemiModalOption.animationDuration: 0.3,
+            .contentYOffset : -50,
+            // .backgroundView : blurEffectView
+        ]
+        
+        self.db_presentSemiView(view, options: options)
     }
     
     @IBAction func btnDown_Click(_ sender: AnyObject)
@@ -267,36 +269,7 @@ class DemoViewController: UIViewController
         self.db_presentSemiView(view, options: options)
     }
     
-    @IBAction func btnCenter_Click(_ sender: AnyObject)
-    {
-        let header_2 = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300))
-        header_2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
-        header_2.textAlignment = .center
-        header_2.font = UIFont.systemFont(ofSize: 14)
-        header_2.text = "btnCenter_Click"
-        header_2.textColor = UIColor.blue
-        header_2.backgroundColor = UIColor.red.withAlphaComponent(0.8)
-        
-        let view = UIView(frame: header_2.frame)
-        view.backgroundColor = UIColor.blue
-        
-        // -- Add custom background view --
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        let options: [DbSemiModalOption: Any] = [
-            DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.slideCenter,
-            //            DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.fadeInOutCenter,
-            DbSemiModalOption.animationDuration: 0.3,
-            .contentYOffset : -50,
-            .backgroundView : blurEffectView
-        ]
-        
-        self.db_presentSemiView(view, options: options)
-        
-    }
+    
     
     @IBAction func btnSemiSheet_Click(_ sender: AnyObject)
     {
