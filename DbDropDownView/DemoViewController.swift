@@ -52,6 +52,8 @@ class DemoViewController: UIViewController
         // self.listView.animationType = .Bouncing
         self.listView.animationType = .Default
         self.listView.tableListHeight = 160
+        // self.listView.hideOptionsWhenTouchOut = true
+        
         
         self.listView.registerCellNib(nib: UINib(nibName: "DropDownCell", bundle: nil),
                                  forCellReuseIdentifier: "dropDownCell")
@@ -132,6 +134,13 @@ class DemoViewController: UIViewController
 //        // let header_2: CalendarView = CalendarView()
 //        
 //        sheet = DbSheetView(withContentView: header_2, andHeight: 310)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        super.viewWillDisappear(animated)
+        
+        self.listView.hideDropDown()
     }
     
     override func viewWillAppear(_ animated: Bool)
