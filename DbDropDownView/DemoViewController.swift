@@ -13,14 +13,13 @@ class DemoViewController: UIViewController
     @IBOutlet weak var btnShow: UIButton!
     @IBOutlet weak var btnHide: UIButton!
     @IBOutlet weak var anchorDbDropDownView: UIView!
-    @IBOutlet weak var anchorPanel: UIView!
+    @IBOutlet weak var anchorDbDropDownPanel: UIView!
     
+    @IBOutlet weak var selectBoxView: UIView!
     var selectBox: DbSelectBox!
+    
     var listView: DbDropDownView!
-    
     var listViewPanel: DbDropDownView!
-    
-    var sheet: DbSheetView!
     
     override func viewDidLoad()
     {
@@ -29,18 +28,21 @@ class DemoViewController: UIViewController
         // Do any additional setup after loading the view, typically from a nib.
         
         // -- example 1 --
-//        self.selectBox = DbSelectBox(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
-//        self.selectBox.center = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY - 100)
-//        self.selectBox.dropDownView.dataSourceStrings(["Mexico", "USA", "England", "France", "Germany", "Spain", "Italy", "Canada"])
-//        self.selectBox.placeholder = "Select your country..."
-//        // Max results list height - Default: No limit
-//        self.selectBox.dropDownView.tableListHeight = 200
-//        
-//        self.selectBox.didSelect { (options, index) in
-//            print("selectBox: \(options.count) at index: \(index)")
-//        }
-//        
-//        self.view.addSubview(self.selectBox)
+        self.selectBox = DbSelectBox(frame: CGRect(x: 20, y: 10, width: 250, height: 30))
+        // self.selectBox.center = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY - 100)
+        self.selectBox.dropDownView.dataSourceStrings(["Mexico", "USA", "England", "France", "Germany", "Spain", "Italy", "Canada"])
+        self.selectBox.placeholder = "Select your country..."
+        // Max results list height - Default: No limit
+        self.selectBox.dropDownView.tableListHeight = 200
+        
+        self.selectBox.didSelect { (options, index) in
+            // print("selectBox: \(options.count) at index: \(index)")
+        }
+        
+        //self.selectBox.center = self.selectBoxView.center
+        self.selectBoxView.addSubview(self.selectBox)
+        
+        
         
         // -- example 2 --
         self.listView = DbDropDownView(withAnchorView: self.anchorDbDropDownView)
@@ -101,27 +103,6 @@ class DemoViewController: UIViewController
         
         
         
-        
-        // Define a header - Default: nothing
-        // -- Show DbDropDownView same panel style --
-//        let header = UILabel(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 100))
-//        header.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
-//        header.textAlignment = .center
-//        header.font = UIFont.systemFont(ofSize: 14)
-//        header.text = "TP Hồ Chí Minh"
-//        header.textColor = UIColor.blue
-//        header.backgroundColor = UIColor.green.withAlphaComponent(0.5)
-//        
-//        listViewPanel = DbDropDownView(withAnchorView: anchorPanel)
-//        listViewPanel.theme = .testTheme()
-//        listViewPanel.animationType = .Default //.Bouncing //.Classic
-//        listViewPanel.tableListHeight = 100
-//        listViewPanel.tableHeaderView = header
-//        // listViewPanel.isScrollEnabled = false
-//        listViewPanel.displayDirection = .BottomToTop
-//        //        listViewPanel.hideOptionsWhenTouchOut = true
-//        listViewPanel.tableYOffset = 5
-//        
 //        // -- Define Sheet View --
 //        let header_2 = UILabel(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 200))
 //        header_2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
@@ -139,8 +120,6 @@ class DemoViewController: UIViewController
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
-        
-        self.listView.hideDropDown()
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -168,15 +147,15 @@ class DemoViewController: UIViewController
     {
         // sheet.show()
         
-        let header_2 = UILabel(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 100))
-        header_2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
-        header_2.textAlignment = .center
-        header_2.font = UIFont.systemFont(ofSize: 14)
-        header_2.text = "TP Hồ Chí Minh"
-        header_2.textColor = UIColor.blue
-        header_2.backgroundColor = UIColor.green.withAlphaComponent(0.5)
-        
-        header_2.displaySameSheetView()
+//        let header_2 = UILabel(frame: CGRect(x: 0, y: 0, width: anchorPanel.frame.width, height: 100))
+//        header_2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+//        header_2.textAlignment = .center
+//        header_2.font = UIFont.systemFont(ofSize: 14)
+//        header_2.text = "TP Hồ Chí Minh"
+//        header_2.textColor = UIColor.blue
+//        header_2.backgroundColor = UIColor.green.withAlphaComponent(0.5)
+//
+//        header_2.displaySameSheetView()
         
     }
     
@@ -193,14 +172,51 @@ class DemoViewController: UIViewController
         self.listView.hideDropDown()
     }
     
-    @IBAction func btnShowPanel_Click(_ sender: AnyObject)
+    @IBAction func btnShowDownPanel_Click(_ sender: AnyObject)
     {
-        listViewPanel.showDropDown()
+        // listViewPanel.showDropDown()
+        // Define a header - Default: nothing
+        // -- Show DbDropDownView same panel style --
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: self.anchorDbDropDownPanel.frame.width, height: 100))
+        // header.backgroundColor = UIColor.cyan //UIColor.lightGray.withAlphaComponent(0.3)
+//        header.textAlignment = .center
+//        header.font = UIFont.systemFont(ofSize: 14)
+//        header.text = "TP Hồ Chí Minh"
+//        header.textColor = UIColor.blue
+        header.backgroundColor = UIColor.cyan //UIColor.green.withAlphaComponent(0.5)
+        
+        let btn = UIButton.init(frame: CGRect(x: 20, y: 20, width: 50, height: 30))
+        btn.setTitle("OK", for: .normal)
+        btn.backgroundColor = UIColor.red
+        btn.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
+        header.addSubview(btn)
+        header.bringSubview(toFront: btn)
+        
+        self.listViewPanel = DbDropDownView(withAnchorView: self.anchorDbDropDownPanel)
+        self.listViewPanel.showDropDown(WithView: header)
     }
     
-    @IBAction func btnHidePanel_Click(_ sender: AnyObject)
+    
+    @objc func buttonClicked()
     {
-        listViewPanel.hideDropDown()
+        self.listViewPanel.hideDropDown()
+    }
+    
+    @IBAction func btnShowUpPanel_Click(_ sender: AnyObject)
+    {
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: self.anchorDbDropDownPanel.frame.width, height: 100))
+        header.backgroundColor = UIColor.cyan //UIColor.green.withAlphaComponent(0.5)
+        
+        let btn = UIButton.init(frame: CGRect(x: 20, y: 20, width: 50, height: 30))
+        btn.setTitle("OK", for: .normal)
+        btn.backgroundColor = UIColor.red
+        btn.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
+        header.addSubview(btn)
+        header.bringSubview(toFront: btn)
+        
+        self.listViewPanel = DbDropDownView(withAnchorView: self.anchorDbDropDownPanel)
+        self.listViewPanel.displayDirection = .BottomToTop
+        self.listViewPanel.showDropDown(WithView: header)
     }
     
     
@@ -216,6 +232,7 @@ class DemoViewController: UIViewController
         
         let view = UIView(frame: header_2.frame)
         view.backgroundColor = UIColor.blue
+        view.addSubview(header_2)
         
         let options: [DbSemiModalOption: Any] = [
             DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.slideUp,
@@ -268,37 +285,15 @@ class DemoViewController: UIViewController
         
         let view = UIView(frame: header_2.frame)
         view.backgroundColor = UIColor.blue
+        view.addSubview(header_2)
         
         let options: [DbSemiModalOption: Any] = [
             DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.slideDown,
-            .contentYOffset : 20,
+            // .contentYOffset : 20,
             // DbSemiModalOption.animationDuration: 0.3
         ]
         
         self.db_presentSemiView(view, options: options)
-    }
-    
-    
-    
-    @IBAction func btnSemiSheet_Click(_ sender: AnyObject)
-    {
-        let header_2 = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300))
-        header_2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
-        header_2.textAlignment = .center
-        header_2.font = UIFont.systemFont(ofSize: 14)
-        header_2.text = "btnCenter_Click"
-        header_2.textColor = UIColor.blue
-        header_2.backgroundColor = UIColor.red.withAlphaComponent(0.8)
-        
-        let view = UIView(frame: header_2.frame)
-        view.backgroundColor = UIColor.blue
-        
-        // self.db_presentSemiSheetView(view)
-        
-        self.db_presentSemiSheetView(view, completion: {
-            print("Da hien ra xong: db_presentSemiSheetView")
-        })
-        
     }
     
 }

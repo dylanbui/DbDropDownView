@@ -135,11 +135,24 @@ class DbSelectBox: UIControl
 
         self.dropDownView.tableDidDisappear {
             self.isSelected = false
+            self.superview?.viewWithTag(5002)?.removeFromSuperview()
         }
     }
     
     @objc fileprivate func touch()
     {
+        // -- Calculator Anchor view --
+        var anchorFrame = self.frame
+        anchorFrame.origin.y = self.frame.maxY
+        anchorFrame.size.height = 0
+        
+        let anchorView = UIView(frame: anchorFrame)
+        anchorView.tag = 5002
+        anchorView.backgroundColor = UIColor.purple
+        self.superview?.addSubview(anchorView)
+        
+        self.dropDownView.anchorView = anchorView
+        
         isSelected = !isSelected
         isSelected ? self.dropDownView.showDropDown() : self.dropDownView.hideDropDown()
     }
@@ -178,7 +191,7 @@ extension DbDropDownViewTheme {
                                    separatorColor: UIColor.lightGray.withAlphaComponent(0.5),
                                    font: UIFont.boldSystemFont(ofSize: 13), fontColor: UIColor.white)
 
-        
+        theme.bgCellColor = UIColor (red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
         theme.subtitleFont = UIFont.italicSystemFont(ofSize: 10)
         theme.subtitleFontColor = UIColor.brown
         theme.checkmarkColor = UIColor.blue // User checkmark

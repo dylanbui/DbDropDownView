@@ -12,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DemoViewController" customModule="DbDropDownView" customModuleProvider="target">
             <connections>
+                <outlet property="anchorDbDropDownPanel" destination="6ah-OC-3w4" id="d2a-by-TT6"/>
                 <outlet property="anchorDbDropDownView" destination="SjQ-Xg-NEu" id="daa-DC-brM"/>
+                <outlet property="selectBoxView" destination="Gnx-32-Dcz" id="qbg-n0-YfH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -79,7 +81,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MZg-4S-cHb">
-                    <rect key="frame" x="0.0" y="251" width="375" height="70"/>
+                    <rect key="frame" x="0.0" y="205" width="375" height="70"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="teA-mb-nC1">
@@ -108,6 +110,39 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="0.95817564358081531" blue="0.015524058699275423" alpha="0.20229973591549297" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DR6-n5-nBo">
+                    <rect key="frame" x="0.0" y="320" width="375" height="60"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="br2-eS-Vwb">
+                            <rect key="frame" x="47" y="10" width="81" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Down Panel"/>
+                            <connections>
+                                <action selector="btnShowDownPanel_Click:" destination="-1" eventType="touchUpInside" id="Rg7-HP-jan"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBI-bP-nam">
+                            <rect key="frame" x="223" y="10" width="98" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Up Panel"/>
+                            <connections>
+                                <action selector="btnShowUpPanel_Click:" destination="-1" eventType="touchUpInside" id="XSW-Li-d2c"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ah-OC-3w4">
+                            <rect key="frame" x="20" y="45" width="335" height="5"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.94509803920000002" green="0.4549019608" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.11050765834732212" blue="0.95779164942537376" alpha="0.20280393835616439" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gnx-32-Dcz">
+                    <rect key="frame" x="0.0" y="422" width="375" height="50"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.70196078429999997" green="0.1764705882" blue="0.1764705882" alpha="0.20194777397260275" colorSpace="custom" customColorSpace="calibratedRGB"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -62,7 +62,7 @@ public class DbDropDownView: UITableView
     
     ////////////////////////////////////////////////////////////////////////
     // Private implementation
-    fileprivate var rootView: UIView! // Top View Add Self
+    fileprivate var containerView: UIView! // Top View Add Self
     
     fileprivate var dismissableView: UIView!
     fileprivate var fontConversionRate: CGFloat = 0.7
@@ -201,6 +201,29 @@ public class DbDropDownView: UITableView
     {
         privateTableDidDisappear = completion
     }
+
+    public func showDropDown(WithView view: UIView, yOffset offset: CGFloat = 5.0, cornerRadius radius: CGFloat = 0)
+    {
+        //guard let parent = self.anchorView else {
+        guard let subAnchorView = self.anchorView else {
+            fatalError("AnchorView not found")
+        }
+        // -- Set theme --
+        self.theme = .panelTheme()
+        self.theme.bgColor = view.backgroundColor ?? UIColor.clear
+        
+        self.tableYOffset = offset
+        self.tableCornerRadius = radius
+        
+        // self.dataSourceItems.removeAll()
+        var frame = subAnchorView.frame
+        frame.size.height = view.frame.size.height
+        view.frame = frame
+        self.tableListHeight = view.frame.size.height // view.frame.height
+        self.tableHeaderView = view
+        self.isScrollEnabled = false
+        self.showDropDown(reloadData: true)
+    }
     
     public func showDropDown(reloadData:Bool = true)
     {
@@ -215,26 +238,19 @@ public class DbDropDownView: UITableView
         }
         
         if let viewController = subAnchorView.firstViewController {
-            self.rootView = viewController.view
+            self.containerView = viewController.view
         } else {
             print("==> ParentViewController not found. Use RootViewController")
-            self.rootView = UIApplication.shared.keyWindow?.rootViewController?.view!
+            self.containerView = UIApplication.shared.keyWindow?.rootViewController?.view!
         }
         
-//        guard let viewController = subAnchorView.firstViewController else {
-//            fatalError("firstViewController not found")
-//        }
-//
-//        self.rootView = viewController.view
+        let frameMatchParent: CGRect! = subAnchorView.superview?.convert(subAnchorView.frame, to: containerView)
+        // print("frameMatchParent = \(String(describing: frameMatchParent))")
         
-        // let rootView = UIApplication.shared.keyWindow?.rootViewController?.view
-        let frameMatchParent = subAnchorView.superview?.convert(subAnchorView.frame, to: rootView)
-        print("frameMatchParent = \(String(describing: frameMatchParent))")
-        
-        let parent = UIView(frame: frameMatchParent!)
+        let parent = UIView(frame: frameMatchParent)
         parent.tag = 5001
-        parent.backgroundColor = UIColor.red // Test color
-        rootView?.addSubview(parent)
+        parent.backgroundColor = UIColor.clear // Test color
+        containerView.addSubview(parent)
         
         self.frame = CGRect(x: parent.frame.minX,
                                  y: parent.frame.minY,
@@ -383,7 +399,7 @@ public class DbDropDownView: UITableView
                 self.privateTableDidDisappear()
                 
                 // -- Remove temple anchor view --
-                self.rootView.viewWithTag(5001)?.removeFromSuperview()
+                self.containerView.viewWithTag(5001)?.removeFromSuperview()
             })
             
         case .Bouncing:
@@ -410,7 +426,7 @@ public class DbDropDownView: UITableView
                 self.privateTableDidDisappear()
                 
                 // -- Remove temple anchor view --
-                self.rootView.viewWithTag(5001)?.removeFromSuperview()
+                self.containerView.viewWithTag(5001)?.removeFromSuperview()
             })
             
         }

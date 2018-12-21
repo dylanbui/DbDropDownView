@@ -2,11 +2,134 @@
 //  UIViewExtension.swift
 //  DbDropDownView
 //
-//  Created by Dylan Bui on 11/2/18.
+//  Created by Dylan Bui on 12/21/18.
 //  Copyright © 2018 Dylan Bui. All rights reserved.
 //
 
-import Foundation
+// MARK: - Properties Layout
+public extension UIView {
+    
+    /// SwifterSwift: x origin of view.
+    public var x: CGFloat {
+        get {
+            return frame.origin.x
+        }
+        set {
+            frame.origin.x = newValue
+        }
+    }
+    
+    /// SwifterSwift: y origin of view.
+    public var y: CGFloat {
+        get {
+            return frame.origin.y
+        }
+        set {
+            frame.origin.y = newValue
+        }
+    }
+    
+    /// SwifterSwift: Width of view.
+    public var width: CGFloat {
+        get {
+            return frame.size.width
+        }
+        set {
+            frame.size.width = newValue
+        }
+    }
+    
+    // SwifterSwift: Height of view.
+    public var height: CGFloat {
+        get {
+            return frame.size.height
+        }
+        set {
+            frame.size.height = newValue
+        }
+    }
+    
+    /// SwifterSwift: Size of view.
+    public var size: CGSize {
+        get {
+            return frame.size
+        }
+        set {
+            width = newValue.width
+            height = newValue.height
+        }
+    }
+    
+    public var origin: CGPoint {
+        get {
+            return frame.origin
+        }
+        set {
+            x = newValue.x
+            y = newValue.y
+        }
+    }
+    
+    /// SwifterSwift: center x origin of view.
+    public var centerX: CGFloat {
+        get {
+            return center.x
+        }
+        set {
+            center.x = newValue
+        }
+    }
+    
+    /// SwifterSwift: center y origin of view.
+    public var centerY: CGFloat {
+        get {
+            return center.y
+        }
+        set {
+            center.y = newValue
+        }
+    }
+    
+    /// SwifterSwift: x origin of view.
+    public var top: CGFloat {
+        get {
+            return y
+        }
+        set {
+            y = newValue
+        }
+    }
+    
+    /// SwifterSwift: y origin of view.
+    public var left: CGFloat {
+        get {
+            return x
+        }
+        set {
+            x = newValue
+        }
+    }
+    
+    /// SwifterSwift: bottom origin of view.
+    public var bottom: CGFloat {
+        get {
+            return y + height
+        }
+        set {
+            y = newValue - height
+        }
+    }
+    
+    /// SwifterSwift: bottom origin of view.
+    public var right: CGFloat {
+        get {
+            return x + width
+        }
+        set {
+            x = newValue - width
+        }
+    }
+}
 
 
 extension UIView
@@ -19,9 +142,9 @@ extension UIView
     func displaySameSheetView() -> Void
     {
         // -- Width full screen --
-//        var frame = self.frame
-//        frame.size.width = UIScreen.main.bounds.size.width
-//        self.frame = frame
+        //        var frame = self.frame
+        //        frame.size.width = UIScreen.main.bounds.size.width
+        //        self.frame = frame
         
         let tableListHeight: CGFloat = 100
         let tableYOffset: CGFloat = 5
@@ -43,7 +166,7 @@ extension UIView
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(touchBackground(sender:)))
         // 2. add the gesture recognizer to a view
         vclRoot.view.addGestureRecognizer(tapGesture)
-
+        
         
         // -- Animation display --
         
@@ -57,7 +180,7 @@ extension UIView
                         // -- Default .TopToBottom --
                         var valY = vclRoot.view.frame.maxY + tableYOffset
                         if true { //self.displayDirection == .BottomToTop {
-//                            valY = vclRoot.view.frame.minY - (tableListHeight+tableYOffset)
+                            //                            valY = vclRoot.view.frame.minY - (tableListHeight+tableYOffset)
                             valY = vclRoot.view.frame.maxY - (tableListHeight+tableYOffset)
                         }
                         
@@ -66,10 +189,10 @@ extension UIView
                                             width: vclRoot.view.frame.width,
                                             height: tableListHeight)
                         self.alpha = 1
-//                        self.dismissableView.alpha = 1
+                        //                        self.dismissableView.alpha = 1
                         
         }, completion: { (didFinish) -> Void in
-
+            
         })
     }
     
@@ -93,15 +216,15 @@ extension UIView
                                             width: self.frame.width,
                                             height: 0)
                         self.alpha = 0
-//                        self.dismissableView.alpha = 0
+                        //                        self.dismissableView.alpha = 0
                         
-
+                        
                         
         }, completion: { (didFinish) -> Void in
             //self.dismissableView.removeFromSuperview()
             self.removeFromSuperview()
         })
-
+        
     }
     
     private func safeAreaBottomPadding() -> CGFloat!
@@ -114,6 +237,6 @@ extension UIView
         }
         return 0
     }
-
+    
     
 }
