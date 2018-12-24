@@ -293,7 +293,7 @@ class ViewController: UIViewController
         let options: [DbSemiModalOption: Any] = [
             DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.slideCenter,
 //            DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.fadeInOutCenter,
-            DbSemiModalOption.animationDuration: 0.3,
+            DbSemiModalOption.animationDurationIn: 0.3,
             .contentYOffset : -50,
             .backgroundView : blurEffectView
         ]

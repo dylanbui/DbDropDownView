@@ -256,21 +256,26 @@ class DemoViewController: UIViewController
         let view = UIView(frame: header_2.frame)
         view.backgroundColor = UIColor.blue
         
+        self.db_presentModalSemiView(view)
+        
+        
+        
         // -- Add custom background view , Bi loi khong su dung duoc --
 //        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
 //        let blurEffectView = UIVisualEffectView(effect: blurEffect)
 //        blurEffectView.frame = view.bounds
 //        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        let options: [DbSemiModalOption: Any] = [
-            DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.slideCenter,
-            // DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.fadeInOutCenter,
-            DbSemiModalOption.animationDuration: 0.3,
-            .contentYOffset : -50,
-            // .backgroundView : blurEffectView
-        ]
-        
-        self.db_presentSemiView(view, options: options)
+//        let options: [DbSemiModalOption: Any] = [
+//            // DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.slideCenter,
+//            // DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.fadeInOutCenter,
+//            DbSemiModalOption.transitionStyle: DbSemiModalTransitionStyle.limitTopToCenter,
+//            DbSemiModalOption.animationDuration: 0.3,
+//            .contentYOffset : -50,
+//            // .backgroundView : blurEffectView
+//        ]
+//        
+//        self.db_presentSemiView(view, options: options)
     }
     
     @IBAction func btnDown_Click(_ sender: AnyObject)
